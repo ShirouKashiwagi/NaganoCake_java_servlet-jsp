@@ -1,0 +1,18 @@
+<!-- 一旦必要ないです。（ConnectionBase.java単体でDB接続していますが、今後context.xmlベースの接続に変更する予定です）
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Context>
+<Context reloadable="true">
+	<Resource name="jdbc/naganocake_db"
+		auth="Container"
+		type="jakarta.sql.DataSource"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/naganocake_db?serverTimezone=Asia/Tokyo&amp;characterEncoding=UTF-8"
+		username="Ncuser"
+		password="nagano_pass_user"
+		maxTotal="100"
+		maxIdle="30"
+		maxWaitMillis="10000"
+		validationQuery="SELECT 1"
+	/>
+</Context>
+-->

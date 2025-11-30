@@ -9,4 +9,11 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+    <!-- データソース参照の追加 -->
+    <resource-ref>
+        <description>MySQL DataSource</description>
+        <res-ref-name>jdbc/naganocake_db</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
 </web-app>
