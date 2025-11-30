@@ -1,0 +1,167 @@
+/* =================================================================
+ * 全体設定 (Reset & Body)
+ * ================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Poppinsフォントを想定 */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    /* --- 【変更点1: 背景画像の設定】 --- */
+    background-image: url('../images/NaganoCake_image.jpg'); /* 相対パスで画像を読み込み */
+    background-size: cover; /* 背景画像が画面全体を覆うように拡大・縮小 */
+    background-position: center; /* 背景画像を中央に配置 */
+    background-repeat: no-repeat; /* 背景画像の繰り返しを防止 */
+    background-attachment: fixed; /* スクロールしても背景を固定 */
+    /* ------------------------------------- */
+}
+
+/* =================================================================
+ * ラッパー (フォーム全体)
+ * ================================================================= */
+.wrapper {
+    width: 420px;
+    color: #333; /* 文字色 */
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+
+    /* --- 【変更点2: 半透明化とぼかし効果】 --- */
+    background: rgba(255, 255, 255, 0.8); /* 白背景を80%の不透明度に設定 */
+    backdrop-filter: blur(10px); /* 背景の画像を10pxぼかす */
+    /* ------------------------------------------- */
+}
+
+.wrapper:hover {
+    transform: translateY(-5px); /* ホバーで少し浮き上がる */
+}
+
+/* =================================================================
+ * 見出し (H1)
+ * ================================================================= */
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+/* =================================================================
+ * 入力フィールド
+ * ================================================================= */
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: rgba(240, 240, 240, 0.7); /* 入力フィールドの薄い背景も少し透明に */
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    padding: 0 45px 0 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.input-box input::placeholder {
+    color: #888;
+}
+
+.input-box input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+    background: #ffffff;
+}
+
+/* アイコンの位置調整 */
+.input-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+    pointer-events: none;
+}
+
+/* =================================================================
+ * チェックボックスとリンク
+ * ================================================================= */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: #007bff;
+    margin-right: 5px;
+}
+
+.remember-forgot a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* =================================================================
+ * ログインボタン
+ * ================================================================= */
+.btn {
+    width: 100%;
+    height: 45px;
+    background: #007bff;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    cursor: pointer;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    background: #0056b3;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* =================================================================
+ * 登録リンク
+ * ================================================================= */
+.register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
