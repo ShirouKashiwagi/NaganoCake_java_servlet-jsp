@@ -38,5 +38,4 @@ public class CustomerLoginComplete extends HttpServlet {
 			System.out.println("画面遷移失敗");
 		}
 	}
-
 }

@@ -49,7 +49,6 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	// 一人分の会員情報取得
-
 	// 社員IDから1社員を取得
 	public Member selectMember(String email, String password) {
 
@@ -60,7 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 		Member member = new Member();
 
 		// idで絞った特定の社員を検索するSQL文を格納
-		String sql = "select id, lastName, firstName, email, password from shain where email =? password =?;";
+		String sql = "select id, last_name, first_name, email, password from members where email =? and password =?";
 
 		//SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
@@ -79,8 +78,8 @@ public class MemberDaoImpl implements MemberDao {
 			while (rs.next()) {
 				// 取得した値をを社員Beanにセット
 				member.setId(rs.getInt("id"));
-				member.setLastName(rs.getString("lastName"));
-				member.setFirstName(rs.getString("firstName"));
+				member.setLastName(rs.getString("last_name"));
+				member.setFirstName(rs.getString("first_name"));
 				member.setEmail(rs.getString("email"));
 				member.setPassword(rs.getString("password"));
 				
