@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+/* リセットと基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ボックスモデルをborder-boxに統一 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 背景設定 */
+body {
+    background: url('../images/NaganoCake_image.jpg') no-repeat center center fixed; /* 背景画像設定 */
+    background-size: cover; /* 画像を画面全体に表示 */
+    min-height: 100vh; /* 画面全体の高さを確保 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* メインコンテナ - ガラスモーフィズム効果 */
+.container {
+	background: (200, 200, 200, 0.30); /* 半透明の白背景 */
+	backdrop-filter: blur(10px); /* 背景の画像を10pxぼかす */
+    border-radius: 20px; /* 角丸 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); /* 立体感のある影 */
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明のボーダー */
+	transition: transform 0.3s ease-in-out; /* 0.3秒かけて変化 */
+}
+
+.container:hover {
+    transform: translateY(-5px); /* ホバーで少し浮き上がる */
+}
+
+/* ヘッダー部分 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 文字の影で読みやすく */
+}
+
+.header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* フォームグループ */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* 横並びフォーム行 */
+.form-row {
+    display: flex;
+    gap: 15px; /* 要素間の隙間 */
+}
+
+.form-row .form-group {
+    flex: 1; /* 均等な幅分配 */
+}
+
+/* ラベルスタイル */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 入力フィールド */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* 半透明ボーダー */
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease; /* スムーズな変化 */
+    background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+    backdrop-filter: blur(5px); /* 入力欄にも軽いぼかし */
+}
+
+/* 入力フィールドフォーカス時 */
+input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.8); /* フォーカス時にボーダーを強調 */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2); /* 発光効果 */
+    background: white; /* フォーカス時に背景を白く */
+}
+
+/* 送信ボタン */
+.btn-submit {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* 半透明ボーダー */
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px); /* ボタンにもぼかし効果 */
+}
+
+/* ボタンホバー時 */
+.btn-submit:hover {
+    background: rgba(255, 255, 255, 0.3); /* ホバー時に少し濃く */
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px); /* 浮き上がる効果 */
+}
+
+/* ログインリンク */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link p {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.login-link a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 必須項目マーク */
+.required {
+    color: #ff6b6b; /* 目立つ赤色 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column; /* 縦並びに変更 */
+        gap: 0;
+    }
+    
+    .container {
+        padding: 30px 20px;
+        backdrop-filter: blur(10px); /* モバイルではぼかしを少し弱く */
+    }
+}
