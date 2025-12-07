@@ -12,11 +12,11 @@
 <body>
 
 	<div class="wrapper">
-		<form action="RegistrationsController" method="post">
+		<form action="CustomerLoginComplete" method="post">
 		
 			<h1>Login</h1>
 			<div class="input-box">
-				<input type="text" placeholder="Username" name="username" required>
+				<input type="text" placeholder="Email" name="email" required>
 				<i class='bx bxs-user'></i>
 			</div>
 			<div class="input-box">

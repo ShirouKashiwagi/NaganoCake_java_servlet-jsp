@@ -9,4 +9,6 @@ public interface MemberDao {
      * @return 登録成功=true, 失敗=false
      */
     boolean insertMember(Member member); // insert
+    
+    Member selectMember(String email, String password); // select
 }

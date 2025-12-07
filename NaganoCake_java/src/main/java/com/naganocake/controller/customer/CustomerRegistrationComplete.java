@@ -31,8 +31,6 @@ public class CustomerRegistrationComplete extends HttpServlet {
 		// 会員登録処理
 		boolean isSuccess = memberInset.insertMember(member);
 		
-		System.out.println(member);
-		
 		if(isSuccess) {
 			//response.sendRedirect(遷移先画面);
 			System.out.println("画面遷移処理");

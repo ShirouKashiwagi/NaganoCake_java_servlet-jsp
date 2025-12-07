@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.NamingException;
-
 import com.naganocake.model.Member;
 import com.naganocake.util.ConnectionBase;
 
@@ -53,8 +51,11 @@ public class MemberDaoImpl implements MemberDao {
 	// 一人分の会員情報取得
 
 	// 社員IDから1社員を取得
-	public Member getMember(String email, String password) throws SQLException, NamingException {
+	public Member selectMember(String email, String password) {
 
+		// HIT件数格納用
+		int count = 0;
+		
 		//Memberの初期化
 		Member member = new Member();
 
@@ -71,8 +72,10 @@ public class MemberDaoImpl implements MemberDao {
 			
 			// SQL文をコンソールへ表示
 			System.out.println(pstmt.toString());
+			
 			//SQL実行
 			ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				// 取得した値をを社員Beanにセット
 				member.setId(rs.getInt("id"));
@@ -80,8 +83,30 @@ public class MemberDaoImpl implements MemberDao {
 				member.setFirstName(rs.getString("firstName"));
 				member.setEmail(rs.getString("email"));
 				member.setPassword(rs.getString("password"));
+				
+				// HITするごとに 1 プラス
+				// count = count + 1;の省略型
+				count++;
+				// count += 1;でも良い。
 			}
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			System.out.println("会員情報の検索に失敗しました。");
 		}
-		return member;
+		
+		if(count == 1) {
+			System.out.println("会員情報がHITしました。");
+			return member;
+			
+		} else if(count == 0) {
+			System.out.println("会員情報がHITしませんでした。");
+			return null;
+			
+		} else {
+			System.out.println("会員情報が複数HITしました。");
+			return null;
+		}
 	}
 }
