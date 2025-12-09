@@ -43,5 +43,4 @@ public class CustomerRegistrationComplete extends HttpServlet {
 //		
 //		insert_db.insertMember(member);
 	}
-
 }
