@@ -17,9 +17,11 @@ public class MemberDaoImpl implements MemberDao {
 			"INSERT INTO members (email, password, last_name, first_name, " +
 			"last_name_kana, first_name_kana, postal_code, address, phone_number) " + 
 			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		
+		// SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
 			//パラメータをSQLにセット
 			pstmt.setString(1, member.getEmail());
 	        pstmt.setString(2, member.getPassword());
@@ -61,7 +63,7 @@ public class MemberDaoImpl implements MemberDao {
 		// idで絞った特定の社員を検索するSQL文を格納
 		String sql = "select id, last_name, first_name, email, password from members where email =? and password =?";
 
-		//SQL実行の準備
+		// SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			

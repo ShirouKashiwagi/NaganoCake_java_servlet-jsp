@@ -2,7 +2,7 @@ package com.naganocake.model;
 
 import java.security.Timestamp;
 
-public class item {
+public class Item {
 	private int id;
 	private int genreId; // 外部キー（Genre.idを参照）
 	private String name;
@@ -13,6 +13,9 @@ public class item {
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 
+	public void add(Item item) {
+	}
+		
 	public int getId() {
 		return id;
 	}

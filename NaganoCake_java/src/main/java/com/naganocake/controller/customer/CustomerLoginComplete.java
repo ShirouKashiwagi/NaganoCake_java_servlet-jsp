@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.naganocake.dao.MemberDao;
 import com.naganocake.dao.MemberDaoImpl;
@@ -20,22 +21,39 @@ import com.naganocake.util.MemberUtil;
 public class CustomerLoginComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// member情報をJSPから取得する
 		Member loginMember = MemberUtil.createMemberFromRequest(request);
-		
+
 		// MemberDaoImplの初期化
 		MemberDao memberSelect = new MemberDaoImpl();
-		
-		// 
+
+		// EmailとPasswordをwhere句にユーザ情報を検索
 		Member member = memberSelect.selectMember(loginMember.getEmail(), loginMember.getPassword());
-		
+
 		// 会員情報がNULLでない場合
-		if(member != null) {
-			System.out.println("画面遷移処理");
+		if (member != null) {
+			System.out.println("ログイン成功: " + member.getEmail());
+
+			// セッションにユーザー情報を保存
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", member);
+			session.setAttribute("memberId", member.getId());
+			session.setAttribute("memberFirstName", member.getFirstName());
+			session.setAttribute("memberLastName", member.getLastName());
+
+			// 商品一覧画面へリダイレクト
+			System.out.println("商品一覧画面へリダイレクト");
+			response.sendRedirect(request.getContextPath() + "/CustomerItemListForm"); 
+			
 		} else {
-			System.out.println("画面遷移失敗");
+			System.out.println("ログイン失敗: メールまたはパスワードが不正");
+
+			// ログイン失敗時の処理
+			request.setAttribute("errorMessage", "メールアドレスまたはパスワードが正しくありません。");
+			request.getRequestDispatcher("/WEB-INF/views/customer/loginForm.jsp").forward(request, response);
 		}
 	}
 }

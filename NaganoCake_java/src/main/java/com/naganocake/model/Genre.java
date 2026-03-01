@@ -2,7 +2,7 @@ package com.naganocake.model;
 
 import java.security.Timestamp;
 
-public class genre {
+public class Genre {
 	private int id;
 	private String name;
 	private Timestamp createdAt;
