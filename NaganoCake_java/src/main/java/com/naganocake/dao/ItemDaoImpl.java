@@ -72,7 +72,9 @@ public class ItemDaoImpl implements ItemDao {
 				item.setId(rs.getInt("id"));
 				item.setName(rs.getString("name"));
 				item.setPrice(rs.getInt("price"));
-				item.setImagePath(rs.getString("imagePath"));
+				item.setImagePath(rs.getString("image_path"));
+				item.setIntroduction(rs.getString("introduction"));
+				item.setGenreId(rs.getInt("genre_id"));
 				
 				// itemをitemListに格納
 				itemList.add(item);		

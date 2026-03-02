@@ -1,6 +1,7 @@
 package com.naganocake.controller.customer;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 import com.naganocake.dao.ItemDao;
 import com.naganocake.dao.ItemDaoImpl;
+import com.naganocake.model.Item;
 import com.naganocake.model.Member;
 
 /**
@@ -55,8 +57,10 @@ public class CustomerItemListForm extends HttpServlet {
 		ItemDao selectItem = new ItemDaoImpl();
 		
 		// 商品一覧の取得
-		// ToDo まだ未実装
-		selectItem.selectAll();
+		List<Item> itemList = selectItem.selectAll();
+		
+		// リスエストに商品一覧を詰める
+		request.setAttribute("items", itemList);
 		
 		// 商品一覧画面を表示
 		request.getRequestDispatcher("/WEB-INF/views/customer/itemList.jsp").forward(request, response);
