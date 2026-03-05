@@ -5,89 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/itemList.css">
 <title>商品一覧 - Nagano Cake</title>
-<style>
-/* 最低限のスタイル */
-body {
-	font-family: Arial, sans-serif;
-	margin: 20px;
-}
-
-.container {
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
-.page-title {
-	color: #333;
-	border-bottom: 2px solid #ff6b8b;
-	padding-bottom: 10px;
-}
-
-.item-list {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 20px;
-	margin-top: 20px;
-}
-
-.item-card {
-	border: 1px solid #ddd;
-	padding: 15px;
-	border-radius: 5px;
-}
-
-.item-name {
-	font-size: 18px;
-	font-weight: bold;
-	margin: 10px 0;
-}
-
-.item-price {
-	color: #e60000;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.item-image {
-	height: 150px;
-	background-color: #f9f9f9;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: #888;
-}
-
-.no-image {
-	text-align: center;
-}
-
-.genre-filter {
-	margin: 20px 0;
-}
-
-.genre-filter a {
-	margin-right: 10px;
-	padding: 5px 10px;
-	background: #f0f0f0;
-	border-radius: 3px;
-	text-decoration: none;
-}
-
-.genre-filter a.active {
-	background: #ff6b8b;
-	color: white;
-}
-</style>
 </head>
 <body>
 	<div class="container">
 		<!-- ログイン状態の表示スタブ -->
 		<div class="login-status">
 			<c:choose>
-				<c:when test="${isLoggedIn}">
-            ようこそ、${loginMember.name}さん！
+				<c:when test="${memberId != null}">
+            ようこそ、${sessionScope.memberFirstName} ${sessionScope.memberLastName}さん！
+						// ToDo: ログアウトコントローラーかjsでの処理を追加する必要あり。
             <a href="${pageContext.request.contextPath}/logout">ログアウト</a>
+
+						// ToDo: マイページのコントローラを作成する必要あり。
+						<a href="${pageContext.request.contextPath}/mypage">マイページ</a>
 				</c:when>
 				<c:otherwise>
 					<a href="${pageContext.request.contextPath}/login">ログイン</a>
