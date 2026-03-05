@@ -39,7 +39,6 @@ public class CustomerLoginComplete extends HttpServlet {
 
 			// セッションにユーザー情報を保存
 			HttpSession session = request.getSession();
-			session.setAttribute("loginMember", member);
 			session.setAttribute("memberId", member.getId());
 			session.setAttribute("memberFirstName", member.getFirstName());
 			session.setAttribute("memberLastName", member.getLastName());
