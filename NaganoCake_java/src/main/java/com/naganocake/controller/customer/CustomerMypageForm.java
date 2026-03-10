@@ -2,6 +2,8 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.model.Member;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,8 +24,8 @@ public class CustomerMypageForm extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		
-		Member LoginId = (Member)request.getAttribute("memberId")；
-		
+		Member LoginId = (Member)request.getAttribute("memberId");
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/mypage.jsp");
 		dispatcher.forward(request, response);
 	}
