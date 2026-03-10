@@ -19,7 +19,7 @@
             <a href="${pageContext.request.contextPath}/logout">ログアウト</a>
 
 						// ToDo: マイページのコントローラを作成する必要あり。
-						<a href="${pageContext.request.contextPath}/mypage">マイページ</a>
+						<a href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a>
 				</c:when>
 				<c:otherwise>
 					<a href="${pageContext.request.contextPath}/login">ログイン</a>

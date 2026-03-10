@@ -2,17 +2,17 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
 
 /**
  * Servlet implementation class CustomerLoginComplete
@@ -21,6 +21,7 @@ import com.naganocake.util.MemberUtil;
 public class CustomerLoginComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
