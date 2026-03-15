@@ -24,9 +24,14 @@ public class CustomerMypageForm extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		
-		Member LoginId = (Member)request.getAttribute("memberId");
+		Member loginId = (Member)session.getAttribute("memberId");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/mypage.jsp");
-		dispatcher.forward(request, response);
+		if(loginId != null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/mypage.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			response.sendRedirect("CustomerLoginForm");
+		}
 	}
 }
