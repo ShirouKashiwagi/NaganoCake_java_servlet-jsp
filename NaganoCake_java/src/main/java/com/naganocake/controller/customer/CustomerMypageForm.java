@@ -30,6 +30,9 @@ public class CustomerMypageForm extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/mypage.jsp");
 			dispatcher.forward(request, response);
 		}
+
+		// TODO DaoImplのselectByIdを呼びだして、会員情報を取得
+
 		else {
 			response.sendRedirect("CustomerLoginForm");
 		}
