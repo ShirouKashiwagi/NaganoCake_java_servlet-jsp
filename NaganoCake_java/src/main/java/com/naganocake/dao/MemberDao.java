@@ -11,4 +11,6 @@ public interface MemberDao {
     boolean insertMember(Member member); // insert
     
     Member selectMember(String email, String password); // select
+
+    Member selectById(Integer id); // selectById
 }

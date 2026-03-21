@@ -2,8 +2,6 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
-import com.naganocake.model.Member;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,12 +22,14 @@ public class CustomerMypageForm extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		
-		Member loginId = (Member)session.getAttribute("memberId");
+		int loginId = (int)session.getAttribute("memberId");
 
-		if(loginId != null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/mypage.jsp");
+		if(loginId != 0) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/myPage.jsp");
 			dispatcher.forward(request, response);
 		}
+
+		
 
 		// TODO DaoImplのselectByIdを呼びだして、会員情報を取得
 
