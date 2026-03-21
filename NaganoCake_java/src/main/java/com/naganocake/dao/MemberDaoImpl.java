@@ -123,7 +123,7 @@ public class MemberDaoImpl implements MemberDao {
 		Member member = new Member();
 
 		// idで絞った特定の社員を検索するSQL文を格納
-		String sql = "select id, last_name, first_name, email, password from members where id = ?";
+		String sql = "select * from members where id = ?;";
 
 		// SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
@@ -138,8 +138,10 @@ public class MemberDaoImpl implements MemberDao {
 			//SQL実行
 			ResultSet rs = pstmt.executeQuery();
 			
+
+			// TODO この辺りを調査する必要あり。
 			while (rs.next()) {
-				// 取得した値をを社員Beanにセット
+				// 取得した値を社員Beanにセット
 				member.setId(rs.getInt("id"));
 				member.setEmail(rs.getString("email"));
 				member.setPassword(rs.getString("password"));
