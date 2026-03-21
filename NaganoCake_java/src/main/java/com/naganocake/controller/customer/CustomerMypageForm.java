@@ -2,6 +2,10 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -27,14 +31,21 @@ public class CustomerMypageForm extends HttpServlet {
 		if(loginId != 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/myPage.jsp");
 			dispatcher.forward(request, response);
-		}
-
-		
-
-		// TODO DaoImplのselectByIdを呼びだして、会員情報を取得
-
-		else {
+		}	else {
 			response.sendRedirect("CustomerLoginForm");
 		}
+
+		// // MemberDaoImplの呼び出し
+		MemberDao memberDao = new MemberDaoImpl();
+
+		// IDをもとに会員情報を取得
+		Member member = memberDao.selectById(loginId);
+
+		// 取得した会員情報をリクエストスコープに保存
+		request.setAttribute("member", member);
+
+		// マイページのJSPにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/myPage.jsp");
+		dispatcher.forward(request, response);
 	}
 }
