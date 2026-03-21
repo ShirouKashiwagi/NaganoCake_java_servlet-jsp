@@ -80,7 +80,7 @@ public class MemberDaoImpl implements MemberDao {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// 取得した値をを社員Beanにセット
+				// 取得した値をを会員モデルにセット
 				member.setId(rs.getInt("id"));
 				member.setLastName(rs.getString("last_name"));
 				member.setFirstName(rs.getString("first_name"));
@@ -97,17 +97,16 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("会員情報の検索に失敗しました。");
 		}
 		
-		if(count == 1) {
-			System.out.println("会員情報がHITしました。");
-			return member;
-			
-		} else if(count == 0) {
-			System.out.println("会員情報がHITしませんでした。");
-			return null;
-			
-		} else {
-			System.out.println("会員情報が複数HITしました。");
-			return null;
+		switch(count) {
+			case 1:
+				System.err.println("会員情報がHITしました。");
+				return member;
+			case 0:
+				System.err.println("会員情報がHITしませんでした。");
+				return null;
+			default:
+				System.err.println("会員情報が複数HITしました。");
+				return null;
 		}
 	}
 
@@ -128,8 +127,7 @@ public class MemberDaoImpl implements MemberDao {
 		// SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
-			
-			// where句のidを指定
+
 			pstmt.setInt(1, id);
 			
 			// SQL文をコンソールへ表示
@@ -138,10 +136,9 @@ public class MemberDaoImpl implements MemberDao {
 			//SQL実行
 			ResultSet rs = pstmt.executeQuery();
 			
-
 			// TODO この辺りを調査する必要あり。
 			while (rs.next()) {
-				// 取得した値を社員Beanにセット
+				// 取得した値を会員モデルにセット
 				member.setId(rs.getInt("id"));
 				member.setEmail(rs.getString("email"));
 				member.setPassword(rs.getString("password"));
@@ -153,31 +150,27 @@ public class MemberDaoImpl implements MemberDao {
 				member.setAddress(rs.getString("address"));
 				member.setPhoneNumber(rs.getString("phoneNumber"));
 				member.setIsActive(rs.getBoolean("isActive"));
-				member.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
-				member.setUpdatedAt(rs.getTimestamp("updatedAt").toLocalDateTime());
-
-				
-				// HITするごとに 1 プラス
-				// count = count + 1;の省略型
+				member.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+				member.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
 				count++;
-				// count += 1;でも良い。
 			}
 			
 		} catch (SQLException e) {
 			System.out.println("会員情報の検索に失敗しました。");
 		}
 		
-		if(count == 1) {
-			System.out.println("会員情報がHITしました。");
-			return member;
-			
-		} else if(count == 0) {
-			System.out.println("会員情報がHITしませんでした。");
-			return null;
-			
-		} else {
-			System.out.println("会員情報が複数HITしました。");
-			return null;
+		switch (count) {
+			case 1:
+				System.out.println("会員情報がHITしました。");
+				return member;
+				
+			case 0:
+				System.out.println("会員情報がHITしませんでした。");
+				return null;
+				
+			default:
+				System.out.println("会員情報が複数HITしました。");
+				return null;
 		}
 	}
 }
