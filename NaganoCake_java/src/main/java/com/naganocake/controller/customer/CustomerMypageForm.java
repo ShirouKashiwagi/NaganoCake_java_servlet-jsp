@@ -25,10 +25,10 @@ public class CustomerMypageForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	  	// セッションオブジェクトの生成or取得
-	    HttpSession session = request.getSession(true);
+	    HttpSession session = request.getSession(false);
 		
 		int loginId = (int)session.getAttribute("memberId");
-
+	
 		// // MemberDaoImplの呼び出し
 		MemberDao memberDao = new MemberDaoImpl();
 
@@ -44,7 +44,7 @@ public class CustomerMypageForm extends HttpServlet {
 			dispatcher.forward(request, response);
 		}	else {
 			// 上記以外の場合
-			response.sendRedirect("CustomerLoginForm");
+			response.sendRedirect(request.getContextPath() + "CustomerLoginForm");
 		}
 	}
 }

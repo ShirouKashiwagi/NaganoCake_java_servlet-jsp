@@ -13,4 +13,6 @@ public interface MemberDao {
     Member selectMember(String email, String password); // select
 
     Member selectById(Integer id); // selectById
+    
+    void updateById(Member member); // updateById
 }

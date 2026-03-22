@@ -173,4 +173,56 @@ public class MemberDaoImpl implements MemberDao {
 				return null;
 		}
 	}
+	
+	// 一人分の会員情報更新
+	// マイページ画面から入力された情報に合わせて会員情報を更新
+	@Override
+	public void updateById(Member member) {
+		
+		String sql = "UPDATE members SET last_name = ?,first_name = ?,last_name_kana = ?,first_name_kana = ?,postal_code = ?,address = ?,phone_number = ?,email = ?,updated_at = CURRENT_TIMESTAMP WHERE id = ?;";
+		
+		// SQL実行の準備
+		try (Connection con = ConnectionBase.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+
+		    // 自動コミットをオフ
+		    con.setAutoCommit(false);
+			
+			pstmt.setString(1, member.getLastName());
+			pstmt.setString(2, member.getFirstName());
+			pstmt.setString(3, member.getLastNameKana());
+			pstmt.setString(4, member.getFirstNameKana());
+			pstmt.setString(5, member.getPostalCode());
+			pstmt.setString(6, member.getAddress());
+			pstmt.setString(7, member.getPhoneNumber());
+			pstmt.setString(8, member.getEmail());
+			pstmt.setInt(9, member.getId());
+			
+			// SQL文をコンソールへ表示
+			System.out.println(pstmt.toString());
+			
+			//SQL実行
+			int rs = pstmt.executeUpdate();
+			
+			if (rs != 0) {
+				System.out.println("1件更新されています。");
+				// DBのコミットを実行
+				con.commit();
+				return;
+			} else if (rs > 1) {
+				System.out.println(rs +"件更新されています。");
+				// DBロールバック
+				con.rollback();
+			} else if(rs == 0) {
+				System.out.println("更新されていません。");
+			} else {
+				throw new SQLException();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("会員情報の検索で異常終了しました。");
+			// DBロールバック
+		}
+	}
 }

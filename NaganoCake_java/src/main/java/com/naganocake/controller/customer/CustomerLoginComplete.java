@@ -2,17 +2,17 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
 
 /**
  * Servlet implementation class CustomerLoginComplete
@@ -28,7 +28,7 @@ public class CustomerLoginComplete extends HttpServlet {
 		// member情報をJSPから取得する
 		Member loginMember = MemberUtil.createMemberFromRequest(request);
 
-		// MemberDaoImplの初期化
+		// MemberDaoの変数に、実装クラスのインスタンスを代入
 		MemberDao memberSelect = new MemberDaoImpl();
 
 		// EmailとPasswordをwhere句にユーザ情報を検索
