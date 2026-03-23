@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import com.naganocake.model.Member;
 
-// member情報をJSPから取得する共通処理
+// memberモデルをJSPから取得する共通処理
 public class MemberUtil {
 	
     public static Member createMemberFromRequest(HttpServletRequest request) {

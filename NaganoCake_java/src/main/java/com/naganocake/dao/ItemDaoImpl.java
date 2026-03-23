@@ -11,7 +11,8 @@ import com.naganocake.model.Item;
 import com.naganocake.util.ConnectionBase;
 
 public class ItemDaoImpl implements ItemDao {
-
+	
+	// 商品IDから商品情報を取得
 	public Item selectById(int id) {
 		
 		String sql = "select * from items where id = ?";
@@ -28,13 +29,15 @@ public class ItemDaoImpl implements ItemDao {
 			// SQL実行と検索結果の取得
 			ResultSet rs = pstmt.executeQuery();
 			
-			// ItemModelの初期化
+			// 取得した値をItemModelにセット
 			Item item = new Item();
 			
 			item.setId(rs.getInt("id"));
 			item.setName(rs.getString("name"));
 			item.setPrice(rs.getInt("price"));
-			item.setImagePath(rs.getString("imagePath"));
+			item.setImagePath(rs.getString("image_path"));
+			item.setIntroduction(rs.getString("introduction"));
+			item.setGenreId(rs.getInt("genre_id"));
 
 			return item;
 
@@ -68,7 +71,7 @@ public class ItemDaoImpl implements ItemDao {
 				// itemの初期化
 				Item item = new Item();
 	
-				//取得した値をItemModelにセット
+				// 取得した値をItemModelにセット
 				item.setId(rs.getInt("id"));
 				item.setName(rs.getString("name"));
 				item.setPrice(rs.getInt("price"));
