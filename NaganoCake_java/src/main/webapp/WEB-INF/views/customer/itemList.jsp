@@ -69,7 +69,7 @@
 								<!-- カート追加は後回し、今は詳細ページリンクのみ -->
 								<!-- TODO 詳細ページの作成 : アイテムIDをget送信することで特定の商品の詳細ページを開ける -->
 								<a
-									href="${pageContext.request.contextPath}/item/detail?id=${item.id}"
+									href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}"
 									style="background: #4CAF50; color: white; padding: 8px 12px; text-decoration: none; border-radius: 3px;">
 									詳細を見る </a>
 							</div>

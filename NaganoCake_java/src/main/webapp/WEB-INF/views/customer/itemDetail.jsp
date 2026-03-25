@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>${item.name} | 商品詳細</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/item-detail.css">
-    <script src="${pageContext.request.contextPath}/js/item-detail.js" defer></script>
+    <link rel="stylesheet" href="./css/item-detail.css">
+    <script src="./js/item-detail.js" defer></script>
 </head>
 <body>
 
