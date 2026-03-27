@@ -21,14 +21,15 @@ import com.naganocake.model.Member;
 public class CustomerMypageForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-  @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	  	// セッションオブジェクトの生成or取得
-	    HttpSession session = request.getSession(false);
-		
-		int loginId = (int)session.getAttribute("memberId");
-	
+		// セッションオブジェクトの生成or取得
+		HttpSession session = request.getSession(false);
+
+		int loginId = (int) session.getAttribute("memberId");
+
 		// // MemberDaoImplの呼び出し
 		MemberDao memberDao = new MemberDaoImpl();
 
@@ -39,10 +40,10 @@ public class CustomerMypageForm extends HttpServlet {
 		request.setAttribute("member", member);
 
 		// セッションからログインIDが取得できた場合
-		if(loginId != 0) {
+		if (loginId != 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/myPage.jsp");
 			dispatcher.forward(request, response);
-		}	else {
+		} else {
 			// 上記以外の場合
 			response.sendRedirect(request.getContextPath() + "CustomerLoginForm");
 		}

@@ -23,20 +23,21 @@ public class CustomerItemDetailForm extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// JSPからidを取得
 		int id = Integer.parseInt(request.getParameter("id"));
-		
+
 		// MemberDaoの変数に、実装クラスのインスタンスを代入
 		ItemDao itemById = new ItemDaoImpl();
-		
+
 		// 取得したIDから商品情報を取得
 		Item item = itemById.selectById(id);
-		
+
 		// リクエストスコープに商品情報を詰める
 		request.setAttribute("item", item);
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/itemDetail.jsp");
 		dispatcher.forward(request, response);
 	}
