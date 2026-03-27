@@ -37,9 +37,7 @@ public class CustomerItemDetailForm extends HttpServlet {
 		// リクエストスコープに商品情報を詰める
 		request.setAttribute("item", item);
 		
-		// TODO 商品詳細画面を作成し、フォワード処理を修正 : itemDetaill.jspとか
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/itemDetail.jsp");
 		dispatcher.forward(request, response);
 	}
-
 }

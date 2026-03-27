@@ -15,7 +15,7 @@ public class ItemDaoImpl implements ItemDao {
 	// 商品IDから商品情報を取得
 	public Item selectById(int id) {
 		
-		String sql = "select * from items where id = ?";
+		String sql = "select * from items where id = ?;";
 		
 		// SQL実行の準備
 		try (Connection con = ConnectionBase.getConnection();
@@ -32,18 +32,29 @@ public class ItemDaoImpl implements ItemDao {
 			// 取得した値をItemModelにセット
 			Item item = new Item();
 			
+			if(rs.next()) {
 			item.setId(rs.getInt("id"));
 			item.setName(rs.getString("name"));
 			item.setPrice(rs.getInt("price"));
 			item.setImagePath(rs.getString("image_path"));
 			item.setIntroduction(rs.getString("introduction"));
 			item.setGenreId(rs.getInt("genre_id"));
-
+			item.setActive(rs.getBoolean("is_active"));
+			
 			return item;
-
+			
+			}else {
+				
+				// TODO 商品情報が取得できない場合の処理
+				System.out.println("ERROR : 2件以上のデータを取得しています。");
+				
+				return null;
+				
+			}
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("会員情報の登録に失敗しました。");
+			System.out.println("商品情報の取得に失敗しました。");
 
 			return null;
 		}
