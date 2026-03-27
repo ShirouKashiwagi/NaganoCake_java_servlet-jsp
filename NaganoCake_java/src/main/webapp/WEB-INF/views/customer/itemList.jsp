@@ -63,7 +63,7 @@
 								</c:choose>
 							</div>
 							<h3 class="item-name">${item.name}</h3>
-							<p class="item-price">¥${item.price}</p>
+							<p class="item-price">${item.price}</p>
 							<p>${item.introduction}</p>
 							<div style="margin-top: 10px;">
 								<!-- カート追加は後回し、今は詳細ページリンクのみ -->

@@ -30,7 +30,7 @@
         <h1 class="item-name">${item.name}</h1>
 
         <p class="item-price">
-            ¥<fmt:formatNumber value="${item.price}" pattern="#,###" />
+            ¥${item.price}
         </p>
 
         <p class="item-introduction">${item.introduction}</p>
