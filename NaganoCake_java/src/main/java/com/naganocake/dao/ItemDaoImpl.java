@@ -60,6 +60,7 @@ public class ItemDaoImpl implements ItemDao {
 		}
 	}
 
+	@Override
 	public List<Item> selectAll() {
 		String sql = "select * from items;";
 

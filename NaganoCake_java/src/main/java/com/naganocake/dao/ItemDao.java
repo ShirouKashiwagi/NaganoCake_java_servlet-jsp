@@ -12,6 +12,6 @@ public interface ItemDao {
      * @return データベースに存在する商品情報
      */
     Item selectById(int id); // select
-    
+
     List<Item> selectAll(); // select * from Item;
 }
