@@ -8,7 +8,7 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 <head>
 <meta charset="UTF-8">
 <title>${item.name}| 商品詳細</title>
-<link rel="stylesheet" href="./css/item-detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/itemDetail.css">
 <script src="./js/item-detail.js" defer></script>
 </head>
 <body>
@@ -19,11 +19,11 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 			<c:choose>
 				<c:when test="${not empty item.imagePath}">
 					<img
-						src="${pageContext.request.contextPath}/images/${item.imagePath}"
+						src="${pageContext.request.contextPath}/images/items/${item.imagePath}"
 						alt="${item.name}">
 				</c:when>
 				<c:otherwise>
-					<img src="${pageContext.request.contextPath}/images/no-image.png"
+					<img src="${pageContext.request.contextPath}/images/items/no-image.png"
 						alt="画像なし">
 				</c:otherwise>
 			</c:choose>
@@ -47,7 +47,7 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 				</c:choose>
 			</p>
 
-			<form action="${pageContext.request.contextPath}/cart/add"
+			<form action="${pageContext.request.contextPath}/CustomerCartController"
 				method="post" class="cart-form">
 				<input type="hidden" name="itemId" value="${item.id}"> <label
 					for="quantity">数量：</label> <select name="quantity" id="quantity">

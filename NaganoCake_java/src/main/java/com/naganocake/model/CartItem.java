@@ -10,8 +10,9 @@ public class CartItem {
   private Timestamp createdAt;
 	private Timestamp updatedAt;
 
-  public void add(CartItem cartItem) {
-  }
+	// 不要 - カートに追加するのはCartItemではなくコントローラーの責務
+//  public void add(CartItem cartItem) {
+//  }
 
   public int getId() {
     return id;

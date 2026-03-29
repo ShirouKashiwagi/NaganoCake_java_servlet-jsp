@@ -24,6 +24,9 @@ public class CustomerMypageComplete extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 更新結果
+		boolean isUpdate;
+		
 		// 会員情報をJSPから取得する
 		Member member = MemberUtil.createMemberFromRequest(request);
 		
@@ -41,6 +44,9 @@ public class CustomerMypageComplete extends HttpServlet {
 		
 		// DBの更新処理を実施
 		memberUpdate.updateById(member);
+		
+		// TODO エラー画面処理
+		//if()
 		
 		// マイページ画面にリダイレクト
 		response.sendRedirect(request.getContextPath() + "/CustomerMypageForm");

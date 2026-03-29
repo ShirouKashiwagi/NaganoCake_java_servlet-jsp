@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>ショッピングカート</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cart.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cartList.css">
 </head>
 <body>
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/itemList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/itemList.css">
 <title>商品一覧 - Nagano Cake</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
 						<a href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a>
 				</c:when>
 				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/login">ログイン</a>
+					<a href="${pageContext.request.contextPath}/CustomerLoginForm">ログイン</a>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -50,14 +50,14 @@
 							<div class="item-image">
 								<c:choose>
 									<c:when test="${not empty item.imagePath}">
-										<img src="${pageContext.request.contextPath}${item.imagePath}"
+										<img src="${pageContext.request.contextPath}/images/items/${item.imagePath}"
 											alt="${item.name}"
-											style="max-width: 100%; max-height: 150px;">
+											style="max-width: 323px; max-height: 150px;">
 									</c:when>
 									<c:otherwise>
 										<div class="no-image">
-											<div style="font-size: 40px;">🎂</div>
-											<div>画像なし</div>
+											<img src="${pageContext.request.contextPath}/images/items/no-image.png"
+											style="max-width: 323px; max-height: 150px;">
 										</div>
 									</c:otherwise>
 								</c:choose>
@@ -67,7 +67,6 @@
 							<p>${item.introduction}</p>
 							<div style="margin-top: 10px;">
 								<!-- カート追加は後回し、今は詳細ページリンクのみ -->
-								<!-- TODO 詳細ページの作成 : アイテムIDをget送信することで特定の商品の詳細ページを開ける -->
 								<a
 									href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}"
 									style="background: #4CAF50; color: white; padding: 8px 12px; text-decoration: none; border-radius: 3px;">

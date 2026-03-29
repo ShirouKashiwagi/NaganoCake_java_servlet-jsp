@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>マイページ</title>
-<link rel="stylesheet" href="css/myPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/myPage.css">
 </head>
 <body>
 	<div class="container">

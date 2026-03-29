@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="./css/loginForm.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginForm.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>新規会員登録</title>
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>

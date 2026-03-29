@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
 
     /* --- 【変更点1: 背景画像の設定】 --- */
-    background-image: url('../images/NaganoCake_image.jpg'); /* 相対パスで画像を読み込み */
+    background-image: url('../images/bg/NaganoCake_image.jpg'); /* 相対パスで画像を読み込み */
     background-size: cover; /* 背景画像が画面全体を覆うように拡大・縮小 */
     background-position: center; /* 背景画像を中央に配置 */
     background-repeat: no-repeat; /* 背景画像の繰り返しを防止 */

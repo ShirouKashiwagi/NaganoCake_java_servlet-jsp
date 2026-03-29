@@ -14,5 +14,5 @@ public interface MemberDao {
 
     Member selectById(Integer id); // selectById
     
-    void updateById(Member member); // updateById
+    boolean updateById(Member member); // updateById
 }

@@ -177,7 +177,7 @@ public class MemberDaoImpl implements MemberDao {
 	// 一人分の会員情報更新
 	// マイページ画面から入力された情報に合わせて会員情報を更新
 	@Override
-	public void updateById(Member member) {
+	public boolean updateById(Member member) {
 		
 		String sql = "UPDATE members SET last_name = ?,first_name = ?,last_name_kana = ?,first_name_kana = ?,postal_code = ?,address = ?,phone_number = ?,email = ?,updated_at = CURRENT_TIMESTAMP WHERE id = ?;";
 		

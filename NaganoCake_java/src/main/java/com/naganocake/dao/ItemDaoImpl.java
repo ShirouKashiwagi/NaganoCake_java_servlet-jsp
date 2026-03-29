@@ -45,10 +45,9 @@ public class ItemDaoImpl implements ItemDao {
 
 			} else {
 
-				// TODO 商品情報が取得できない場合の処理
+				// TODO 商品情報が取得できない場合のエラー処理
 				System.out.println("ERROR : 2件以上のデータを取得しています。");
-
-				return null;
+				throw new SQLException();
 
 			}
 

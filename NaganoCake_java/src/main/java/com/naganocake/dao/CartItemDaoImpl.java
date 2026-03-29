@@ -11,7 +11,7 @@ public class CartItemDaoImpl implements CartItemDao {
 
   // カート情報を登録
   @Override
-	public CartItem insert(CartItem cartItem) {
+	public boolean insert(CartItem cartItem) {
 		String sql = "INSERT INTO items (id, member_id, item_id, amount, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try (Connection con = ConnectionBase.getConnection();
@@ -28,20 +28,20 @@ public class CartItemDaoImpl implements CartItemDao {
 			System.out.println(pstmt.toString());
 
 			// SQL実行
-			int result = pstmt.executeUpdate();
+			int rs = pstmt.executeUpdate();
 
-			if (result > 0) {
+			if (rs > 0) {
 				System.out.println("商品情報の登録に成功しました。");
-				return item;
+				return true;
 			} else {
 				System.out.println("商品情報の登録に失敗しました。");
-				return null;
+				throw new SQLException();
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("商品情報の登録に失敗しました。");
-			return null;
+			return false;
 		}
 	}
 }
