@@ -12,7 +12,7 @@ public class MemberDaoImpl implements MemberDao {
 	
 	// 会員登録
 	@Override
-	public boolean insertMember(Member member) {
+	public boolean insert(Member member) {
 		// 会員を登録するSQL
 		String sql = 
 			"INSERT INTO members (email, password, last_name, first_name, " +
@@ -54,7 +54,7 @@ public class MemberDaoImpl implements MemberDao {
 	// 一人分の会員情報取得
 	// Eメールとパスワードから1社員を取得
 	@Override
-	public Member selectMember(String email, String password) {
+	public Member selectByLogin(String email, String password) {
 
 		// HIT件数格納用
 		int count = 0;
@@ -177,7 +177,7 @@ public class MemberDaoImpl implements MemberDao {
 	// 一人分の会員情報更新
 	// マイページ画面から入力された情報に合わせて会員情報を更新
 	@Override
-	public boolean updateById(Member member) {
+	public boolean update(Member member) {
 		
 		String sql = "UPDATE members SET last_name = ?,first_name = ?,last_name_kana = ?,first_name_kana = ?,postal_code = ?,address = ?,phone_number = ?,email = ?,updated_at = CURRENT_TIMESTAMP WHERE id = ?;";
 		

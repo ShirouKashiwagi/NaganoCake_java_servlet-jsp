@@ -13,5 +13,6 @@ public interface ItemDao {
      */
     Item selectById(int id); // select
 
+    // 商品情報を全件取得する
     List<Item> selectAll(); // select * from Item;
 }

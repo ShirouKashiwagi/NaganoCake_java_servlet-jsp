@@ -8,11 +8,11 @@ public interface MemberDao {
      * @param member 登録する会員情報
      * @return 登録成功=true, 失敗=false
      */
-    boolean insertMember(Member member); // insert
+    boolean insert(Member member); // insert
     
-    Member selectMember(String email, String password); // select
+    Member selectByLogin(String email, String password); // select
 
     Member selectById(Integer id); // selectById
     
-    boolean updateById(Member member); // updateById
+    boolean update(Member member); // updateById
 }
