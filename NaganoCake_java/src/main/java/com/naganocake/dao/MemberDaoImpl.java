@@ -208,13 +208,13 @@ public class MemberDaoImpl implements MemberDao {
 				System.out.println("1件更新されています。");
 				// DBのコミットを実行
 				con.commit();
-				return;
+				return true;
 			} else if (rs > 1) {
-				System.out.println(rs +"件更新されています。");
+				System.out.println("ERROR " + rs +"件更新されているため、ロールバックを実行します。");
 				// DBロールバック
 				con.rollback();
 			} else if(rs == 0) {
-				System.out.println("更新されていません。");
+				System.out.println("ERROR 更新されていません。");
 			} else {
 				throw new SQLException();
 			}

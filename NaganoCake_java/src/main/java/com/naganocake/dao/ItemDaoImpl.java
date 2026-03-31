@@ -41,6 +41,7 @@ public class ItemDaoImpl implements ItemDao {
 				item.setGenreId(rs.getInt("genre_id"));
 				item.setActive(rs.getBoolean("is_active"));
 
+					System.out.println("info ID:" + id + "の" + item.getName() + "がHITしました。");
 				return item;
 
 			} else {
