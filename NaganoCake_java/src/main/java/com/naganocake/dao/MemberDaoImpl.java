@@ -208,11 +208,11 @@ public class MemberDaoImpl implements MemberDao {
 				System.out.println("1件更新されています。");
 				// DBのコミットを実行
 				con.commit();
-				return true;
 			} else if (rs > 1) {
 				System.out.println("ERROR " + rs +"件更新されているため、ロールバックを実行します。");
 				// DBロールバック
 				con.rollback();
+				return false;
 			} else if(rs == 0) {
 				System.out.println("ERROR 更新されていません。");
 			} else {
@@ -224,5 +224,6 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("会員情報の検索で異常終了しました。");
 			// DBロールバック
 		}
+		return true;
 	}
 }

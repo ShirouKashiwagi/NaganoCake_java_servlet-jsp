@@ -32,7 +32,7 @@ public class CustomerLoginComplete extends HttpServlet {
 		MemberDao memberSelect = new MemberDaoImpl();
 
 		// EmailとPasswordをwhere句にユーザ情報を検索
-		Member member = memberSelect.selectMember(loginMember.getEmail(), loginMember.getPassword());
+		Member member = memberSelect.selectByLogin(loginMember.getEmail(), loginMember.getPassword());
 
 		// 会員情報がNULLでない場合
 		if (member != null) {

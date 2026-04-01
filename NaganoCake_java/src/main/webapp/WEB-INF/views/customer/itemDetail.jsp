@@ -12,7 +12,9 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 <script src="./js/item-detail.js" defer></script>
 </head>
 <body>
-
+	<div class="headerArea">
+		<%@ include file="/WEB-INF/views/common/commonHeader.jsp" %>
+	</div>	
 	<div class="item-detail-container">
 
 		<div class="item-image">
@@ -47,7 +49,7 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 				</c:choose>
 			</p>
 
-			<form action="${pageContext.request.contextPath}/CustomerCartController"
+			<form action="${pageContext.request.contextPath}/CustomerCartController?action=list"
 				method="post" class="cart-form">
 				<input type="hidden" name="itemId" value="${item.id}"> <label
 					for="quantity">数量：</label> <select name="quantity" id="quantity">

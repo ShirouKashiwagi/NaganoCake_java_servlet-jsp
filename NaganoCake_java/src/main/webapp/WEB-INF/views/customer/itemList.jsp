@@ -9,22 +9,10 @@
 <title>商品一覧 - Nagano Cake</title>
 </head>
 <body>
+	<div class="headerArea">
+		<%@ include file="/WEB-INF/views/common/commonHeader.jsp" %>
+	</div>	
 	<div class="container">
-		<!-- ログイン状態の表示スタブ -->
-		<div class="login-status">
-			<c:choose>
-				<c:when test="${memberId != null}">
-            ようこそ、${sessionScope.memberFirstName} ${sessionScope.memberLastName}さん！
-						// ToDo: ログアウトコントローラーかjsでの処理を追加する必要あり。
-            <a href="${pageContext.request.contextPath}/logout">ログアウト</a>
-						<a href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/CustomerLoginForm">ログイン</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-
 		<!-- 商品一覧表示スタブ -->
 		<h1 class="page-title">商品一覧</h1>
 
