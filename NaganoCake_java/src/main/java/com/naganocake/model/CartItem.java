@@ -1,14 +1,14 @@
 package com.naganocake.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class CartItem {
   private int id;
   private int memberId;
   private int itemId;
   private int amount;
-  private Timestamp createdAt;
-	private Timestamp updatedAt;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
 	// 不要 - カートに追加するのはCartItemではなくコントローラーの責務
 //  public void add(CartItem cartItem) {
@@ -46,19 +46,19 @@ public class CartItem {
     this.amount = amount;
   }
 
-  public Timestamp getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Timestamp createdAt) {
+  public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
   }
 
-  public Timestamp getUpdatedAt() {
+  public LocalDateTime getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(Timestamp updatedAt) {
+  public void setUpdatedAt(LocalDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 }
