@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.naganocake.dao.CartItemDao;
 import com.naganocake.dao.CartItemDaoImpl;
@@ -31,21 +32,46 @@ public class CustomerCartController extends HttpServlet {
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
 		
+		HttpSession session = request.getSession(false);
+		
+		// セッションから会員IDを取得
+		int memberId = (int)session.getAttribute("memberId");
+		
+		// JSPからGet送信されたactionを取得
+		String action = (String) request.getParameter("action");
+
+		// カート機能判別処理
+		switch(action) {
+			case "list":
+				break;
+			case "add":
+				addItem(request, response);
+			case "delete":
+				deleteItem(request, response);
+		}
+		
 		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
 		CartItemDao cartItem = new CartItemDaoImpl();
 		
-		// cartList = cartItem.カート情報取得実装クラス
+		cartList = cartItem.selectById(memberId);
+		
+		request.setAttribute("cartList", cartList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");
 		dispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+	// 商品追加処理
+	private void addItem(HttpServletRequest request, HttpServletResponse response) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		System.out.println("カートに商品を追加します。");
 	}
-
+	
+	// カート商品削除処理
+	private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
+		// TODO 自動生成されたメソッド・スタブ
+		
+		System.out.println("カートの商品を削除します。");
+	}
 }
