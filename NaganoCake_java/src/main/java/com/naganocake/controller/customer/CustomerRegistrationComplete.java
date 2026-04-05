@@ -2,16 +2,16 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
 
 /**
  * Servlet implementation class CustomerRegistrationComplete
@@ -29,7 +29,7 @@ public class CustomerRegistrationComplete extends HttpServlet {
 		MemberDao memberInset = new MemberDaoImpl();
 		
 		// 会員登録処理
-		boolean isSuccess = memberInset.insertMember(member);
+		boolean isSuccess = memberInset.insert(member);
 		
 		if(isSuccess) {
 			//response.sendRedirect(遷移先画面);

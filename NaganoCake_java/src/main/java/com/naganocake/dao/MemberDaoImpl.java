@@ -92,9 +92,9 @@ public class MemberDaoImpl implements MemberDao {
 				count++;
 				// count += 1;でも良い。
 			}
-			
+		
 		} catch (SQLException e) {
-			System.out.println("会員情報の検索に失敗しました。");
+			System.out.println("ERROR : 会員情報の検索に失敗しました。");
 		}
 		
 		switch(count) {

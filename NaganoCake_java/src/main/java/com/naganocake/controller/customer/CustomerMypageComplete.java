@@ -2,17 +2,17 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
 
 /**
  * Servlet implementation class CustomerLoginForm
@@ -43,7 +43,7 @@ public class CustomerMypageComplete extends HttpServlet {
 		MemberDao memberUpdate = new MemberDaoImpl();
 		
 		// DBの更新処理を実施
-		memberUpdate.updateById(member);
+		memberUpdate.update(member);
 		
 		// TODO エラー画面処理
 		//if()
