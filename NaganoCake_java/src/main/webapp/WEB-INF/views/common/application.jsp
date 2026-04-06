@@ -13,7 +13,9 @@
    <header class= "shadow">
     <nav class="navbar navbar-expand-lg navbar-light">
      <div class= "container">
-      <a class="navbar-brand" href="/" style="color: #eee;"><%= image_tag 'NaganoCale.png', class: "logo" %></a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/" style="color: #eee;">
+       <img src="${pageContext.request.contextPath}/images/items/no-image.png" class="logo" alt="Nagano Cake">
+      </a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
      </button>
@@ -52,7 +54,6 @@
      </div>
     </nav>
  </header>
- <%= yield %>
  <footer>
  </footer>
   </body>

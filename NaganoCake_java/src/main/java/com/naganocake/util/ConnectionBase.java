@@ -15,10 +15,10 @@ public class ConnectionBase {
         }
         
         // WSL2 + Docker環境
-        String url = "jdbc:mysql://db:3306/naganocake_db?serverTimezone=Asia/Tokyo&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true";
+        // String url = "jdbc:mysql://db:3306/naganocake_db?serverTimezone=Asia/Tokyo&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true";
 
         // eclipse環境
-        // String url = "jdbc:mysql://localhost:3306/naganocake_db?serverTimezone=Asia/Tokyo&characterEncoding=UTF-8";
+        String url = "jdbc:mysql://localhost:3306/naganocake_db?serverTimezone=Asia/Tokyo&characterEncoding=UTF-8";
 
         String user = "Ncuser";
         String password = "nagano_pass_user";
