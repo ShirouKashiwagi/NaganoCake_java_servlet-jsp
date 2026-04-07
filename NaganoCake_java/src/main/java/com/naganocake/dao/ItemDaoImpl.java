@@ -90,6 +90,13 @@ public class ItemDaoImpl implements ItemDao {
 				item.setImagePath(rs.getString("image_path"));
 				item.setIntroduction(rs.getString("introduction"));
 				item.setGenreId(rs.getInt("genre_id"));
+				
+				// isActiveの判定処理
+				if(rs.getInt("is_active") == 1){
+					item.setActive(true);
+				}else {
+					item.setActive(false);
+				}
 
 				// itemをitemListに格納
 				itemList.add(item);

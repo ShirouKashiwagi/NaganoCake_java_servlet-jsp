@@ -79,7 +79,7 @@
 											<p class="item-details item-name card-text">${item.name}</p>
 
 											<c:choose>
-												<c:when test="${item.isActive}">
+												<c:when test="${item.active}">
 													<!--.to_s(:delimited)は3桁ごとにカンマ区切りで表示してくれる便利なメソッドです-->
 													<p class="item-details card-text">${item.price}円</p>
 												</c:when>
