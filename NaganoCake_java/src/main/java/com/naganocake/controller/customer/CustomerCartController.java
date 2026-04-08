@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.naganocake.dao.CartItemDao;
-import com.naganocake.dao.CartItemDaoImpl;
-import com.naganocake.model.CartItem;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,14 +12,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import com.naganocake.dao.CartItemDao;
+import com.naganocake.dao.CartItemDaoImpl;
+import com.naganocake.model.CartItem;
+
 /**
  * Servlet implementation class CustomerCartController
  */
 @WebServlet("/CustomerCartController")
 public class CustomerCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -60,6 +59,11 @@ public class CustomerCartController extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");
 		dispatcher.forward(request, response);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 	
 	// 商品追加処理

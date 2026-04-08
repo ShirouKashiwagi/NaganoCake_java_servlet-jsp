@@ -5,7 +5,7 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/itemList.css">
 <title>商品一覧 - Nagano Cake</title>
 </head>
 
@@ -17,17 +17,18 @@
 	<!--カスタマー側の商品一覧ページ-->
 	<p id="notice"></p>
 	<div class="container mt-5 pl-0">
-		<div class="row">
+		<div>
 			<div class="col-3 ml-3 mr-5">
 				<!--ジャンル検索-->
 				<table class="table">
 					<thead>
 						<th>ジャンル検索</th>
 					</thead>
-<!--					<tbody>-->
-<!--						<tr>-->
+						<tbody>
+							<tr>
+								<p>ジャンルリンク<p/>
 <!--							<a href="${pageContext.request.contextPath}/items" class="${empty param.genre ? 'active' : ''}">すべて</a>-->
-<!--						</tr>-->
+							</tr>
 <!--						<c:forEach var="genre" items="${genres}">-->
 <!--							<tr>-->
 <!--								<td>-->
@@ -35,7 +36,7 @@
 <!--								</td>-->
 <!--							</tr>-->
 <!--						</c:forEach>-->
-<!--					</tbody>-->
+					</tbody>
 				</table>
 
 			</div>
@@ -46,7 +47,7 @@
 					</h2>
 				</div>
 
-				<div class="row mt-3 mb-3 text-center text-xs-center text-sm-center text-md-left">
+				<div class="row">
 
 					<c:choose>
 						<c:when test="${empty items}">
@@ -76,8 +77,7 @@
 										</c:choose>
 
 										<div class="card-body">
-											<p class="item-details item-name card-text">${item.name}</p>
-
+												<a class="item-details item-name card-text" href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}">${item.name}</a>
 											<c:choose>
 												<c:when test="${item.active}">
 													<!--.to_s(:delimited)は3桁ごとにカンマ区切りで表示してくれる便利なメソッドです-->

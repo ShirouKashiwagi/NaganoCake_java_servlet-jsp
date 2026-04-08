@@ -12,9 +12,9 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 <script src="./js/item-detail.js" defer></script>
 </head>
 <body>
-	<div class="headerArea">
-		<%@ include file="/WEB-INF/views/common/commonHeader.jsp" %>
-	</div>	
+	
+	<%@ include file="/WEB-INF/views/common/application.jsp" %>
+	
 	<div class="item-detail-container">
 
 		<div class="item-image">
