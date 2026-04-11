@@ -39,26 +39,28 @@
 
 							<c:when test="${memberId != null}">
 								<li class="nav-item">
-								  <span class="navbar-welcome"class="navbar-text">
+								  <span class="navbar-welcome"">
 								    ようこそ、${sessionScope.memberFirstName} ${sessionScope.memberLastName}さん！
 								  </span>
 								</li>
 								
 								<li class="nav-item">
-									<a class="nav-link"
-									   href="${pageContext.request.contextPath}/CustomerCartController?action=list">
+									<a class="nav-link" href="${pageContext.request.contextPath}/CustomerCartController?action=list">
 									  カート[${cartItem.amount}]
 									</a>
 								</li>
-
-								<li class="nav-item"><a class="nav-link"
-									href="/customer_items">商品一覧</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/customer_orders">注文履歴</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}/logout">ログアウト</a></li>
+								<li class="nav-item">
+									<a class="nav-link" href="/customer_items">商品一覧</a
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="/customer_orders">注文履歴</a
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="${pageContext.request.contextPath}/logout">ログアウト</a>
+								</li>
 
 							</c:when>
 
@@ -67,28 +69,11 @@
 									href="${pageContext.request.contextPath}/CustomerLoginForm">ログイン</a>
 								</li>
 							</c:otherwise>
-
 						</c:choose>
-
 					</ul>
 				</div>
-
 			</div>
 		</nav>
 	</header>
-
-	<div class="container mt-4">
-		<jsp:include page="${contentPage}" />
-	</div>
-
-	<footer> © 2026 NaganoCake All Rights Reserved. </footer>	
-	
-	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-	<!-- Custom JS -->
-	<script src="${pageContext.request.contextPath}/js/application.js"></script>
 </body>
 </html>

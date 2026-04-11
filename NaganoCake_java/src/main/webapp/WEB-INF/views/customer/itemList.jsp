@@ -15,88 +15,63 @@
 	<%@ include file="/WEB-INF/views/common/application.jsp"%>
 
 	<!--カスタマー側の商品一覧ページ-->
-	<p id="notice"></p>
-	<div class="container mt-5 pl-0">
-		<div>
-			<div class="col-3 ml-3 mr-5">
-				<!--ジャンル検索-->
-				<table class="table">
-					<thead>
-						<th>ジャンル検索</th>
-					</thead>
-						<tbody>
-							<tr>
-								<p>ジャンルリンク<p/>
-<!--							<a href="${pageContext.request.contextPath}/items" class="${empty param.genre ? 'active' : ''}">すべて</a>-->
-							</tr>
-<!--						<c:forEach var="genre" items="${genres}">-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<a href="${pageContext.request.contextPath}/items?genre=${genre.id}" class="${param.genre == genre.id ? 'active' : ''}">${genre.name}</a>-->
-<!--								</td>-->
-<!--							</tr>-->
-<!--						</c:forEach>-->
-					</tbody>
-				</table>
+		<div class="container">
+		<!-- 商品一覧表示スタブ -->
+		<h1 class="page-title">商品一覧</h1>
 
-			</div>
-			<div class="col-9 ml-5">
-				<div class="row">
-					<h2 class="px-3">
-						<strong>商品一覧</strong>
-					</h2>
-				</div>
+		 ジャンルフィルター（シンプル版） 
+		<div class="genre-filter">
+<!--			<a href="${pageContext.request.contextPath}/items"-->
+<!--				class="${empty param.genre ? 'active' : ''}">すべて</a>-->
+<!--			<c:forEach var="genre" items="${genres}">-->
+<!--				<a href="${pageContext.request.contextPath}/items?genre=${genre.id}"-->
+<!--					class="${param.genre == genre.id ? 'active' : ''}">${genre.name}</a>-->
+<!--			</c:forEach>-->
+		</div>
 
-				<div class="row">
-
-					<c:choose>
-						<c:when test="${empty items}">
-							<p>表示する商品がありません。</p>
-						</c:when>
-						<c:otherwise>
-							<c:forEach var="item" items="${items}">
-								<div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
-									<div class="card w-100 bg-transparent border-0" style="width: 18rem;">
-
-										<c:choose>
-											<c:when test="${not empty item.imagePath}">
-												<p class="img-wrap">
-													<img
-														src="${pageContext.request.contextPath}/images/items/${item.imagePath}"
-														alt="${item.name}"
-														style="max-width: 200px; max-height: 200px;">
-												</p>
-											</c:when>
-											<c:otherwise>
-												<p class="img-wrap">
-													<img
-														src="${pageContext.request.contextPath}/images/items/no-image.png"
-														style="max-width: 200px; max-height: 200px;">
-												</p>
-											</c:otherwise>
-										</c:choose>
-
-										<div class="card-body">
-												<a class="item-details item-name card-text" href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}">${item.name}</a>
-											<c:choose>
-												<c:when test="${item.active}">
-													<!--.to_s(:delimited)は3桁ごとにカンマ区切りで表示してくれる便利なメソッドです-->
-													<p class="item-details card-text">${item.price}円</p>
-												</c:when>
-												<c:otherwise>
-													<p class="text-danger font-weight-bold card-text">SOLD OUT!!</p>
-												</c:otherwise>
-											</c:choose>	
+		<!-- 商品一覧表示 -->
+		<div class="item-list">
+			<c:choose>
+				<c:when test="${empty items}">
+					<p>表示する商品がありません。</p>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="item" items="${items}">
+						<div class="item-card">
+							<div class="item-image">
+								<c:choose>
+									<c:when test="${not empty item.imagePath}">
+										<img src="${pageContext.request.contextPath}/images/items/${item.imagePath}"
+											alt="${item.name}"
+											style="max-width: 323px; max-height: 150px;">
+									</c:when>
+									<c:otherwise>
+										<div class="no-image">
+											<img src="${pageContext.request.contextPath}/images/items/no-image.png"
+											style="max-width: 323px; max-height: 150px;">
 										</div>
-										
-									</div>
-								</div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<h3 class="item-name">${item.name}</h3>
+							<p class="item-price">${item.price}</p>
+							<p>${item.introduction}</p>
+							<div style="margin-top: 10px;">
+								<!-- カート追加は後回し、今は詳細ページリンクのみ -->
+								<a
+									href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}"
+									style="background: #4CAF50; color: white; padding: 8px 12px; text-decoration: none; border-radius: 3px;">
+									詳細を見る </a>
+							</div>
+						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
+	
+	<%-- 共通レイアウト --%>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	
 </body>
 </html>
