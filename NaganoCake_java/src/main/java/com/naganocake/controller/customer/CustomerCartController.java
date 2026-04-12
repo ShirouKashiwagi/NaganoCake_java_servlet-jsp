@@ -38,7 +38,8 @@ public class CustomerCartController extends HttpServlet {
 		int memberId = (int)session.getAttribute("memberId");
 		
 		// JSPからGet送信されたactionを取得
-		String action = (String) request.getParameter("action");
+		String action = request.getParameter("action");
+		System.out.println(action);
 
 		// カート機能判別処理
 		switch(action) {
@@ -58,19 +59,21 @@ public class CustomerCartController extends HttpServlet {
 		request.setAttribute("cartList", cartList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");
+		
 		dispatcher.forward(request, response);
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		doGet(request, response);
 	}
 	
 	// 商品追加処理
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自動生成されたメソッド・スタブ
+		System.out.println("カートに商品に追加する処理を開始します。");
 		
-		System.out.println("カートに商品を追加します。");
+		
 	}
 	
 	// カート商品削除処理
