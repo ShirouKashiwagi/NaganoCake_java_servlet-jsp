@@ -51,7 +51,7 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 
 			<form action="${pageContext.request.contextPath}/CustomerCartController?" method="post" class="cart-form">
 				<input type="hidden" name="itemId" value="${item.id}">
-				<inpuy type="hidden" name="action" value="add">
+				<input type="hidden" name="action" value="add">
 				<label for="quantity">数量：</label>
 				<select name="quantity" id="quantity">
 					<c:forEach var="i" begin="1" end="10">
