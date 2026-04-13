@@ -29,6 +29,39 @@ public class CustomerCartController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// JSPからGet送信されたactionを取得
+		String action = request.getParameter("action");
+
+		if(action == null || action.equals("list")) {
+			listItem(request, response);
+			return;
+		}
+		
+		response.sendError(HttpServletResponse.SC_NOT_FOUND);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// JSPからGet送信されたactionを取得
+		String action = request.getParameter("action");
+		
+		// 各機能への振分処理
+		switch(action){
+			case "add":
+				addItem(request, response);
+				return;
+			case "delete":
+				deleteItem(request, response);
+				return;
+			default:
+				response.sendError(HttpServletResponse.SC_NOT_FOUND);
+				break;
+		}
+	}
+	
+	private void listItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
 		
@@ -37,43 +70,25 @@ public class CustomerCartController extends HttpServlet {
 		// セッションから会員IDを取得
 		int memberId = (int)session.getAttribute("memberId");
 		
-		// JSPからGet送信されたactionを取得
-		String action = request.getParameter("action");
-		System.out.println(action);
-
-		// カート機能判別処理
-		switch(action) {
-			case "list":
-				break;
-			case "add":
-				addItem(request, response);
-			case "delete":
-				deleteItem(request, response);
-		}
-		
 		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
 		CartItemDao cartItem = new CartItemDaoImpl();
 		
+		// セッションから取得した会員IDでカート情報を取得
 		cartList = cartItem.selectById(memberId);
 		
+		// DBから取得したカート情報をリクエストに詰める
 		request.setAttribute("cartList", cartList);
 		
+		// リクエスト情報をカート画面に送信及び画面遷移
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");
-		
 		dispatcher.forward(request, response);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		doGet(request, response);
+		
 	}
 	
 	// 商品追加処理
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自動生成されたメソッド・スタブ
 		System.out.println("カートに商品に追加する処理を開始します。");
-		
-		
 	}
 	
 	// カート商品削除処理
