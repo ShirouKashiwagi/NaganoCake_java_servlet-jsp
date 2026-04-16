@@ -64,21 +64,24 @@ public class CustomerCartController extends HttpServlet {
 
 	private void listItem(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
-
+		
+		
 		HttpSession session = request.getSession(false);
-
+		
 		// セッションから会員IDを取得
 		int memberId = (int) session.getAttribute("memberId");
-
+		
+		
 		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
 		CartItemDao cartItem = new CartItemDaoImpl();
-
+		
 		// セッションから取得した会員IDでカート情報を取得
 		cartList = cartItem.selectById(memberId);
-
+		
+		
 		// DBから取得したカート情報をリクエストに詰める
 		request.setAttribute("cartList", cartList);
 
@@ -97,6 +100,34 @@ public class CustomerCartController extends HttpServlet {
 
 		// セッションから会員IDを取得
 		int memberId = (int) session.getAttribute("memberId");
+		
+		// 商品詳細画面からPOST送信された情報を取得
+		int itemId = request.getParameter("itemId");
+		
+		int amount = request.getParameter("amount");
+		
+		
+		// 上記で取得した情報をカートモデルに詰める
+		CartItem cartItem = new CartItem();
+		
+		cartItem.setMemberId(memberId);
+		cartItem.setItemId(itemId);
+		cartItem.setAmount(amount);
+		
+		
+		// TODO exists(int memberId, int itemId)をDaoの実装クラスに用意する必要あり。
+		  // 具体的には商品が既に入っているかを確認（戻り値としてint（商品個数））
+		
+		
+		// existsメソッドの戻り値がnullの場合insertメソッドを実施の条件分岐を行う。
+		
+		// カートDaoの変数に実装クラスのインスタンスを代入
+		CartItemDao insert = new CartItemDaoImpl();
+		
+		// 商品追加処理
+		insert.insert(cartItem);
+		
+		
 		
 		// TODO 商品をDBに追加する処理を作成しよう。
 
