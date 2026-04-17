@@ -15,7 +15,7 @@ public class CartItemDaoImpl implements CartItemDao {
 	// カート情報を登録
 	@Override
 	public boolean insert(CartItem cartItem) {
-		String sql = "INSERT INTO items (member_id, item_id, amount, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO cart_items (member_id, item_id, amount, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
 
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -44,10 +44,13 @@ public class CartItemDaoImpl implements CartItemDao {
 			return false;
 		}
 	}
-
+	
+	
+	
+	
 	// カート情報の取得
 	@Override
-	public List<CartItem> selectById(int id) {
+	public List<CartItem> selectByMemberId(int id) {
 
 		// CartItem を格納するリスト（ArrayListで実装）
 		List<CartItem> cartList = new ArrayList<>();
@@ -97,5 +100,13 @@ public class CartItemDaoImpl implements CartItemDao {
 			e.printStackTrace();
 		}
 		return cartList;
+	}
+	
+	
+	
+	// TODO カート商品の存在有無と特定の商品の個数を取得する処理を実装する。
+	public Integer countAmount(int memberId,int itemId) {
+		int i = 1;
+		return i;
 	}
 }

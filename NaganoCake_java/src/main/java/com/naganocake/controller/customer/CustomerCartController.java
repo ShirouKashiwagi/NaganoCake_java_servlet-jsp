@@ -79,7 +79,7 @@ public class CustomerCartController extends HttpServlet {
 		CartItemDao cartItem = new CartItemDaoImpl();
 		
 		// セッションから取得した会員IDでカート情報を取得
-		cartList = cartItem.selectById(memberId);
+		cartList = cartItem.selectByMemberId(memberId);
 		
 		
 		// DBから取得したカート情報をリクエストに詰める
