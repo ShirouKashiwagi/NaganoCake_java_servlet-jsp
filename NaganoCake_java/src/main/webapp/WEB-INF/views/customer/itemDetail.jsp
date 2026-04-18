@@ -9,7 +9,6 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 <meta charset="UTF-8">
 <title>${item.name}| 商品詳細</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/itemDetail.css">
-<script src="./js/item-detail.js" defer></script>
 </head>
 <body>
 	
@@ -63,5 +62,7 @@ com.naganocake.model.Item item = (com.naganocake.model.Item) request.getAttribut
 			</form>
 		</div>
 	</div>
+	
+	<script src="${pageContext.request.contextPath}/js/itemDetail.js" defer></script>
 </body>
 </html>

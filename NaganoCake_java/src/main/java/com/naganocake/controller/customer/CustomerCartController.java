@@ -91,7 +91,7 @@ public class CustomerCartController extends HttpServlet {
 
 	
 	// 商品追加処理
-	private void addItem(HttpServletRequest request, HttpServletResponse response) {
+	private void addItem(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO 自動生成されたメソッド・スタブ
 		System.out.println("カートに商品に追加する処理を開始します。");
 
@@ -128,8 +128,11 @@ public class CustomerCartController extends HttpServlet {
 			cartItemDao.insert(cartItem);
 		} else {
 			// 商品個数の更新
-			// cartItemDao.updateByMemberIdAndItemId;
+			cartItemDao.update(cartItem);
 		}
+		
+		// カート画面にリダイレクト
+		response.sendRedirect(request.getContextPath() + "/CustomerCartController?action=list");
 	}
 
 	

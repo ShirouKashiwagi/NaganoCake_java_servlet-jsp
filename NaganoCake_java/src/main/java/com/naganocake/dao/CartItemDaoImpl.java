@@ -137,4 +137,34 @@ public class CartItemDaoImpl implements CartItemDao {
 			return null;
 		}
 	}
+	
+	
+	public void update(CartItem cartItem) {
+		
+		String sql = "UPDATE cart_items SET amount = ? WHERE member_id = ? AND item_id = ?;";
+		
+		try (Connection con = ConnectionBase.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			// SET情報
+			pstmt.setInt(1, cartItem.getAmount());
+			
+			// 条件情報
+			pstmt.setInt(2, cartItem.getMemberId());
+			pstmt.setInt(3, cartItem.getItemId());
+			
+			int updateCount = pstmt.executeUpdate();
+			
+			if(updateCount != 1) {
+				throw new IllegalStateException("cart_items が更新できませんでした。 (更新件数：" + updateCount + ")");
+			} else {
+				return;
+			}
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			return;
+		}
+	}
 }
