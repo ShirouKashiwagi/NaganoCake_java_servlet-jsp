@@ -54,15 +54,13 @@ public class CartItemDaoImpl implements CartItemDao {
 
 		// CartItem を格納するリスト（ArrayListで実装）
 		List<CartItem> cartList = new ArrayList<>();
-
 		// カートモデルの初期化
 		CartItem cartItem = new CartItem();
-
 		// SQL文をsql変数に代入
 		String sql = "SELECT * FROM cart_items WHERE id = ?;";
-
 		// 件数カウンタ
 		int count = 0;
+		
 		
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -105,8 +103,38 @@ public class CartItemDaoImpl implements CartItemDao {
 	
 	
 	// TODO カート商品の存在有無と特定の商品の個数を取得する処理を実装する。
-	public Integer countAmount(int memberId,int itemId) {
-		int i = 1;
-		return i;
+	public Integer countAmount(int memberId, int itemId) {
+		
+		String sql = "SELECT amount FROM cart_items WHERE member_id = ? AND item_id = ?;";
+		
+		try (Connection con = ConnectionBase.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			// プレースホルダーでidを挿入
+			pstmt.setInt(1, memberId);
+			pstmt.setInt(2, itemId);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			// レコードなしの場合、nullを返却
+			if (!rs.next()) {
+			    return null;
+			}
+			
+			// 上記以外の場合、商品個数を取得
+			Integer amount = rs.getInt("amount");
+			
+			// 2 行目が存在したら異常
+			if (rs.next()) {
+			    throw new IllegalStateException("cart_items に重複レコードが存在します (memberId=" + memberId + ", itemId=" + itemId + ")");
+			}
+			
+			return amount;
+			
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

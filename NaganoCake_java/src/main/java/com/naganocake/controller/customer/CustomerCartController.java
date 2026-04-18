@@ -41,6 +41,7 @@ public class CustomerCartController extends HttpServlet {
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
 
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -62,23 +63,20 @@ public class CustomerCartController extends HttpServlet {
 		}
 	}
 
+	
 	private void listItem(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
 		
-		
-		HttpSession session = request.getSession(false);
-		
 		// セッションから会員IDを取得
+		HttpSession session = request.getSession(false);
 		int memberId = (int) session.getAttribute("memberId");
 		
-		
 		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
-		CartItemDao cartItem = new CartItemDaoImpl();
-		
 		// セッションから取得した会員IDでカート情報を取得
+		CartItemDao cartItem = new CartItemDaoImpl();
 		cartList = cartItem.selectByMemberId(memberId);
 		
 		
@@ -91,6 +89,7 @@ public class CustomerCartController extends HttpServlet {
 
 	}
 
+	
 	// 商品追加処理
 	private void addItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -102,9 +101,8 @@ public class CustomerCartController extends HttpServlet {
 		int memberId = (int) session.getAttribute("memberId");
 		
 		// 商品詳細画面からPOST送信された情報を取得
-		int itemId = request.getParameter("itemId");
-		
-		int amount = request.getParameter("amount");
+		int itemId = Integer.parseInt(request.getParameter("itemId"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
 		
 		
 		// 上記で取得した情報をカートモデルに詰める
@@ -115,25 +113,26 @@ public class CustomerCartController extends HttpServlet {
 		cartItem.setAmount(amount);
 		
 		
+		// カートDaoの変数に実装クラスのインスタンスを代入
+		CartItemDao cartItemDao = new CartItemDaoImpl();
+		
 		// TODO exists(int memberId, int itemId)をDaoの実装クラスに用意する必要あり。
 		  // 具体的には商品が既に入っているかを確認（戻り値としてint（商品個数））
+		Integer countAmount = cartItemDao.countAmount(memberId, itemId);
 		
 		
 		// existsメソッドの戻り値がnullの場合insertメソッドを実施の条件分岐を行う。
-		
-		// カートDaoの変数に実装クラスのインスタンスを代入
-		CartItemDao insert = new CartItemDaoImpl();
-		
-		// 商品追加処理
-		insert.insert(cartItem);
-		
-		
-		
 		// TODO 商品をDBに追加する処理を作成しよう。
-
-		
+		if(countAmount != null) {
+			// 商品追加処理
+			cartItemDao.insert(cartItem);
+		} else {
+			// 商品個数の更新
+			// cartItemDao.updateByMemberIdAndItemId;
+		}
 	}
 
+	
 	// カート商品削除処理
 	private void deleteItem(HttpServletRequest request, HttpServletResponse response) {
 		// TODO 自動生成されたメソッド・スタブ
