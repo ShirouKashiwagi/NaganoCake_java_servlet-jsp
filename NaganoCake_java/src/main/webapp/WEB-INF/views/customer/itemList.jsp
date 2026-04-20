@@ -36,25 +36,29 @@
 					<p>表示する商品がありません。</p>
 				</c:when>
 				<c:otherwise>
+				
 					<c:forEach var="item" items="${items}">
 						<div class="item-card">
 							<div class="item-image">
 								<c:choose>
+								
 									<c:when test="${not empty item.imagePath}">
 										<img src="${pageContext.request.contextPath}/images/items/${item.imagePath}"
 											alt="${item.name}"
 											style="max-width: 323px; max-height: 150px;">
 									</c:when>
+									
 									<c:otherwise>
 										<div class="no-image">
 											<img src="${pageContext.request.contextPath}/images/items/no-image.png"
 											style="max-width: 323px; max-height: 150px;">
 										</div>
 									</c:otherwise>
+									
 								</c:choose>
 							</div>
 							<h3 class="item-name">${item.name}</h3>
-							<p class="item-price">${item.price}</p>
+							<p class="item-price">${item.price}円</p>
 							<p>${item.introduction}</p>
 							<div style="margin-top: 10px;">
 								<!-- カート追加は後回し、今は詳細ページリンクのみ -->
@@ -65,6 +69,7 @@
 							</div>
 						</div>
 					</c:forEach>
+					
 				</c:otherwise>
 			</c:choose>
 		</div>

@@ -15,14 +15,15 @@ public class CartItemDaoImpl implements CartItemDao {
 	// カート情報を登録
 	@Override
 	public boolean insert(CartItem cartItem) {
-		String sql = "INSERT INTO cart_items (member_id, item_id, amount, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
+		
+		String sql = "INSERT INTO cart_items (member_id, item_id, amount) VALUES (?, ?, ?)";
 
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
-			pstmt.setInt(2, cartItem.getMemberId());
-			pstmt.setInt(3, cartItem.getItemId());
-			pstmt.setInt(4, cartItem.getAmount());
+			pstmt.setInt(1, cartItem.getMemberId());
+			pstmt.setInt(2, cartItem.getItemId());
+			pstmt.setInt(3, cartItem.getAmount());
 
 			// SQL文を表示
 			System.out.println(pstmt.toString());
@@ -50,23 +51,23 @@ public class CartItemDaoImpl implements CartItemDao {
 	
 	// カート情報の取得
 	@Override
-	public List<CartItem> selectByMemberId(int id) {
+	public List<CartItem> selectByMemberId(int memberId) {
 
 		// CartItem を格納するリスト（ArrayListで実装）
 		List<CartItem> cartList = new ArrayList<>();
 		// カートモデルの初期化
 		CartItem cartItem = new CartItem();
-		// SQL文をsql変数に代入
-		String sql = "SELECT * FROM cart_items WHERE id = ?;";
 		// 件数カウンタ
 		int count = 0;
 		
+		// SQL文をsql変数に代入
+		String sql = "SELECT * FROM cart_items WHERE member_id = ?;";
 		
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			
 			// プレースホルダーでidを挿入
-			pstmt.setInt(1, id);
+			pstmt.setInt(1, memberId);
 
 			// SQL文の確認
 			System.out.println(pstmt);

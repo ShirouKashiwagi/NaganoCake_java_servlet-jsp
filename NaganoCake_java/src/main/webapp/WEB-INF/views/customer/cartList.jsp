@@ -35,14 +35,15 @@
 
 					<td>
 						<form action="CartUpdateServlet" method="post">
-							<input type="hidden" name="cartItemId" value="${ci.id}">
+							<input type="hidden" name="cartItemId" value="${ci.cartItem.id}">
 							<input type="number" name="amount" value="${ci.amount}" min="1">
 							<button type="submit">変更</button>
 						</form>
 					</td>
 
-					<td><fmt:formatNumber value="${ci.item.price * ci.amount}"
-							type="number" /></td>
+					<td>
+						<fmt:formatNumber value="${ci.item.price * ci.amount}" type="number" />
+					</td>
 
 					<td>
 						<form action="CartDeleteServlet" method="post">
