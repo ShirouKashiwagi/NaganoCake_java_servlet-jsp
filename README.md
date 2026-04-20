@@ -1,12 +1,20 @@
-🍰 NaganoCake Java – Architecture Overview
-NaganoCake Java は、Ruby 版 NaganoCake（Rails）を参考にしつつ、
+NaganoCake Java – Architecture Overview
+
+Ruby 版 NaganoCake（Rails）を参考にしつつ、
 Java（Servlet / JSP）で再構築した EC サイトです。
-アプリ全体は 3 層アーキテクチャ（Three-Tier Architecture） を採用しています。
 
-🏛 1. Presentation Layer（表示層）
-構成要素：JSP / Servlet（Controller）
+本プロジェクトは「Three-Tier Architecture（3 層アーキテクチャ）」を採用しています。
 
-この層はユーザーと直接やり取りする部分です。
+============================================================
+
+Presentation Layer（表示層）
+============================================================
+
+構成要素：
+
+JSP
+
+Servlet（Controller）
 
 役割：
 
@@ -14,7 +22,7 @@ Java（Servlet / JSP）で再構築した EC サイトです。
 
 DAO や Service に処理を依頼する
 
-JSP を使って画面を表示する
+JSP を使って画面を描画する
 
 例：
 
@@ -26,11 +34,16 @@ cart.jsp
 
 item_list.jsp
 
-⚙️ 2. Business Logic Layer（業務ロジック層）
-構成要素：Service（任意）
+============================================================
 
-NaganoCake の規模では薄めですが、
-本来は Controller と DAO の間で業務処理を担当する層です。
+Business Logic Layer（業務ロジック層）
+============================================================
+
+構成要素：
+
+Service（任意）
+
+NaganoCake の規模では薄めだが、本来は Controller と DAO の間で業務処理を行う層。
 
 役割：
 
@@ -46,10 +59,16 @@ CartService
 
 ItemService
 
-🗄 3. Data Access Layer（データアクセス層）
-構成要素：DAO / Entity
+============================================================
 
-DB と直接やり取りする層です。
+Data Access Layer（データアクセス層）
+============================================================
+
+構成要素：
+
+DAO
+
+Entity
 
 役割：
 
@@ -69,37 +88,43 @@ CartItemEntity
 
 ItemEntity
 
-📦 DTO（Data Transfer Object）
-DTO は層ではなく データの受け渡し専用クラスです。
-JOIN 結果や画面表示用のデータをまとめるために使用します。
+============================================================
+DTO（Data Transfer Object）
+============================================================
+
+DTO は層ではなく「データの受け渡し専用クラス」。
+
+JOIN 結果や画面表示用のデータをまとめるために使用する。
 
 例：
 
 CartItemDTO（商品情報＋カート数量をまとめた表示用モデル）
 
-🧱 Architecture Diagram
-コード
+============================================================
+Architecture Diagram（テキスト版）
+============================================================
+
 Presentation Layer
-   ├── JSP
-   └── Controller (Servlet)
-          ↓
+├── JSP
+└── Controller (Servlet)
+↓
 Business Logic Layer (Service)
-          ↓
+↓
 Data Access Layer
-   ├── DAO
-   └── Entity
-          ↓
-       Database
-📝 環境
+├── DAO
+└── Entity
+↓
+Database
+
+============================================================
+Development Environment
+============================================================
+
 Java : 21.0.9 LTS
-
 Eclipse : 2024-09
-
 Tomcat : 10.1.29
-
 MySQL : 8.0.35
-
 MySQL Connector/J : 9.4.0
 
-Ruby 版 NaganoCake（参考元）：
+参考元（Ruby 版 NaganoCake）：
 https://github.com/team-GameBoys/GameBoys-github
