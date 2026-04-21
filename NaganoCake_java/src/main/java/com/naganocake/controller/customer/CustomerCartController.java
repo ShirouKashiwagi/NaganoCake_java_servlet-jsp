@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.naganocake.dao.CartItemDao;
+import com.naganocake.dao.CartItemDaoImpl;
+import com.naganocake.entity.CartItemEntity;
+import com.naganocake.model.CartItem;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,10 +16,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.naganocake.dao.CartItemDao;
-import com.naganocake.dao.CartItemDaoImpl;
-import com.naganocake.model.CartItem;
 
 /**
  * Servlet implementation class CustomerCartController
@@ -68,7 +69,8 @@ public class CustomerCartController extends HttpServlet {
 	private void listItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// ListインターフェースにArrayListを代入
-		List<CartItem> cartList = new ArrayList<>();
+		List<CartItem> cartItemList = new ArrayList<>();
+		List<CartItemEntity> cartItemEntity = new ArrayList<>();
 		
 		// セッションから会員IDを取得
 		HttpSession session = request.getSession(false);
@@ -77,12 +79,23 @@ public class CustomerCartController extends HttpServlet {
 		
 		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
 		// セッションから取得した会員IDでカート情報を取得
-		CartItemDao cartItem = new CartItemDaoImpl();
-		cartList = cartItem.selectByMemberId(memberId);
+		CartItemDao cartItemDao = new CartItemDaoImpl();
+		cartItemEntity = cartItemDao.selectByMemberId(memberId);
 		
+		// TODO 拡張for文でCartItemEntityからitemテーブルの情報を取得してItemにセットする
+		for (CartItemEntity entity : cartItemEntity) {
+
+			// TODO CartItemEntityからitemテーブルの情報を取得してItemにセットする
+
+			// TODO 新たなitemモデルを作成して、CartItemEntityからitemテーブルの情報を取得してItemにセットする
+			 // カートアイテムモデルにはカートアイテム.個数とカート画面にitemテーブルの情報をセットする
+			CartItem item = new CartItem();
+			item.setAmount(entity.getAmount());
+			cartItemList.add(item);
+		}
 		
 		// DBから取得したカート情報をリクエストに詰める
-		request.setAttribute("cartList", cartList);
+		request.setAttribute("cartList", cartItemList);
 
 		// リクエスト情報をカート画面に送信及び画面遷移
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");

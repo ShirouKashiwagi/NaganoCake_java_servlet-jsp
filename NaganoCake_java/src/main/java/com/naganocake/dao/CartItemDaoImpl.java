@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.naganocake.entity.CartItemEntity;
 import com.naganocake.model.CartItem;
 import com.naganocake.util.ConnectionBase;
 
@@ -51,12 +52,12 @@ public class CartItemDaoImpl implements CartItemDao {
 	
 	// カート情報の取得
 	@Override
-	public List<CartItem> selectByMemberId(int memberId) {
+	public List<CartItemEntity> selectByMemberId(int memberId) {
 
 		// CartItem を格納するリスト（ArrayListで実装）
-		List<CartItem> cartList = new ArrayList<>();
-		// カートモデルの初期化
-		CartItem cartItem = new CartItem();
+		List<CartItemEntity> cartList = new ArrayList<>();
+		// カートエンティティの初期化
+		CartItemEntity cartItemEntity = new CartItemEntity();
 		// 件数カウンタ
 		int count = 0;
 		
@@ -78,15 +79,15 @@ public class CartItemDaoImpl implements CartItemDao {
 			while (rs.next()) {
 
 				// 取得した値をを商品カートモデルにセット
-				cartItem.setId(rs.getInt("id"));
-				cartItem.setMemberId(rs.getInt("member_id"));
-				cartItem.setItemId(rs.getInt("item_id"));
-				cartItem.setAmount(rs.getInt("amount"));
-				cartItem.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-				cartItem.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
+				cartItemEntity.setId(rs.getInt("id"));
+				cartItemEntity.setMemberId(rs.getInt("member_id"));
+				cartItemEntity.setItemId(rs.getInt("item_id"));
+				cartItemEntity.setAmount(rs.getInt("amount"));
+				cartItemEntity.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+				cartItemEntity.setUpdatedAt(rs.getTimestamp("updated_at").toLocalDateTime());
 
 				// itemをitemListに格納
-				cartList.add(cartItem);
+				cartList.add(cartItemEntity);
 
 				count++;
 			}
