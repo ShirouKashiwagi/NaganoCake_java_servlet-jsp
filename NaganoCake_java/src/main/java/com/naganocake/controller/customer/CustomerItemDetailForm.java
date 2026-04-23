@@ -2,16 +2,16 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
+import com.naganocake.dao.ItemDao;
+import com.naganocake.dao.ItemDaoImpl;
+import com.naganocake.entity.ItemEntity;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.naganocake.dao.ItemDao;
-import com.naganocake.dao.ItemDaoImpl;
-import com.naganocake.model.Item;
 
 /**
  * Servlet implementation class CustomerItemDetailForm
@@ -33,7 +33,7 @@ public class CustomerItemDetailForm extends HttpServlet {
 		ItemDao itemById = new ItemDaoImpl();
 
 		// 取得したIDから商品情報を取得
-		Item item = itemById.selectById(id);
+		ItemEntity item = itemById.selectById(id);
 
 		// リクエストスコープに商品情報を詰める
 		request.setAttribute("item", item);

@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 
 public class CartItem {
   private int id;
-  private int memberId;
-  private int itemId;
+	private int memberId;
+	private int itemId;
+	private String name;
+	private int price;
   private int amount;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
@@ -38,6 +40,22 @@ public class CartItem {
     this.itemId = itemId;
   }
 
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getPrice() {
+    return price;
+  } 
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+  
   public int getAmount() {
     return amount;
   }

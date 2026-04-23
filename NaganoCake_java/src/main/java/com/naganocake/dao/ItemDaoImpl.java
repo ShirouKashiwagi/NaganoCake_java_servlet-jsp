@@ -7,13 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.naganocake.entity.ItemEntity;
 import com.naganocake.model.Item;
 import com.naganocake.util.ConnectionBase;
 
 public class ItemDaoImpl implements ItemDao {
 
+	@Override
 	// 商品IDから商品情報を取得
-	public Item selectById(int id) {
+	public ItemEntity selectById(int id) {
 
 		String sql = "select * from items where id = ?;";
 
@@ -30,7 +32,7 @@ public class ItemDaoImpl implements ItemDao {
 			ResultSet rs = pstmt.executeQuery();
 
 			// 取得した値をItemModelにセット
-			Item item = new Item();
+			ItemEntity item = new ItemEntity();
 
 			if (rs.next()) {
 				item.setId(rs.getInt("id"));

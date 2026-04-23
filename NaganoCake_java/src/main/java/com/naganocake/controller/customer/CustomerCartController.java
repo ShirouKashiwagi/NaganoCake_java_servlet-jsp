@@ -7,7 +7,10 @@ import java.util.List;
 import com.naganocake.dao.CartItemDao;
 import com.naganocake.dao.CartItemDaoImpl;
 import com.naganocake.entity.CartItemEntity;
+import com.naganocake.entity.ItemEntity;
 import com.naganocake.model.CartItem;
+import com.naganocake.dao.ItemDao;
+import com.naganocake.dao.ItemDaoImpl;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -69,8 +72,9 @@ public class CustomerCartController extends HttpServlet {
 	private void listItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// ListインターフェースにArrayListを代入
-		List<CartItem> cartItemList = new ArrayList<>();
+		List<CartItem> cartList = new ArrayList<>();
 		List<CartItemEntity> cartItemEntity = new ArrayList<>();
+		
 		
 		// セッションから会員IDを取得
 		HttpSession session = request.getSession(false);
@@ -82,20 +86,25 @@ public class CustomerCartController extends HttpServlet {
 		CartItemDao cartItemDao = new CartItemDaoImpl();
 		cartItemEntity = cartItemDao.selectByMemberId(memberId);
 		
+		
 		// TODO 拡張for文でCartItemEntityからitemテーブルの情報を取得してItemにセットする
 		for (CartItemEntity entity : cartItemEntity) {
 
-			// TODO CartItemEntityからitemテーブルの情報を取得してItemにセットする
-
-			// TODO 新たなitemモデルを作成して、CartItemEntityからitemテーブルの情報を取得してItemにセットする
-			 // カートアイテムモデルにはカートアイテム.個数とカート画面にitemテーブルの情報をセットする
+			// CartItemEntityからitemテーブルの情報を取得してcartItemモデルにセットする
+			ItemDao itemSelect = new ItemDaoImpl();
+			ItemEntity itemSelectResult = itemSelect.selectById(entity.getItemId());
+			
+			// cartItemモデルにセットする
 			CartItem item = new CartItem();
 			item.setAmount(entity.getAmount());
-			cartItemList.add(item);
+			item.setCreatedAt(entity.getCreatedAt());
+			item.setName(itemSelectResult.getName());
+			item.setPrice(itemSelectResult.getPrice());
+			cartList.add(item);
 		}
 		
 		// DBから取得したカート情報をリクエストに詰める
-		request.setAttribute("cartList", cartItemList);
+		request.setAttribute("cartList", cartList);
 
 		// リクエスト情報をカート画面に送信及び画面遷移
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");

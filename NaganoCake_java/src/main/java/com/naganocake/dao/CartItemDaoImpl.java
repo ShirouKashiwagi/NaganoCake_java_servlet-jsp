@@ -69,7 +69,7 @@ public class CartItemDaoImpl implements CartItemDao {
 			
 			// プレースホルダーでidを挿入
 			pstmt.setInt(1, memberId);
-
+					
 			// SQL文の確認
 			System.out.println(pstmt);
 
