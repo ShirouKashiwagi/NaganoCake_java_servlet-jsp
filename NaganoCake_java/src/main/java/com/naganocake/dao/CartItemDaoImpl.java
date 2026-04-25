@@ -8,23 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.naganocake.entity.CartItemEntity;
-import com.naganocake.model.CartItem;
 import com.naganocake.util.ConnectionBase;
 
 public class CartItemDaoImpl implements CartItemDao {
 
 	// カート情報を登録
-	@Override
-	public boolean insert(CartItem cartItem) {
+	public boolean insert(int newAmount, int memberId, int itemId) {
 		
 		String sql = "INSERT INTO cart_items (member_id, item_id, amount) VALUES (?, ?, ?)";
 
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
-			pstmt.setInt(1, cartItem.getMemberId());
-			pstmt.setInt(2, cartItem.getItemId());
-			pstmt.setInt(3, cartItem.getAmount());
+			pstmt.setInt(1, memberId);
+			pstmt.setInt(2, itemId);
+			pstmt.setInt(3, newAmount);
 
 			// SQL文を表示
 			System.out.println(pstmt.toString());
@@ -51,7 +49,6 @@ public class CartItemDaoImpl implements CartItemDao {
 	
 	
 	// カート情報の取得
-	@Override
 	public List<CartItemEntity> selectByMemberId(int memberId) {
 
 		// CartItem を格納するリスト（ArrayListで実装）
@@ -141,7 +138,7 @@ public class CartItemDaoImpl implements CartItemDao {
 	}
 	
 	
-	public void update(CartItem cartItem) {
+	public void update(int newAmount, int memberId, int itemId) {
 		
 		String sql = "UPDATE cart_items SET amount = ? WHERE member_id = ? AND item_id = ?;";
 		
@@ -149,11 +146,11 @@ public class CartItemDaoImpl implements CartItemDao {
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 			
 			// SET情報
-			pstmt.setInt(1, cartItem.getAmount());
+			pstmt.setInt(1, newAmount);
 			
 			// 条件情報
-			pstmt.setInt(2, cartItem.getMemberId());
-			pstmt.setInt(3, cartItem.getItemId());
+			pstmt.setInt(2, memberId);
+			pstmt.setInt(3, itemId);
 			
 			int updateCount = pstmt.executeUpdate();
 			

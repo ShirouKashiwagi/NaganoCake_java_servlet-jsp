@@ -6,68 +6,69 @@
 <title>ショッピングカート</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cartList.css">
 </head>
-<body>
+<body class="cart-bg">
 
-	<%@ include file="/WEB-INF/views/common/application.jsp"%>
+    <%@ include file="/WEB-INF/views/common/application.jsp"%>
 
-	<h2>ショッピングカート</h2>
+    <div class="cart-container fade-in">
+        <h2 class="cart-title">ショッピングカート</h2>
 
-	<c:if test="${empty cartItems}">
-		<p>カートは空です。</p>
-	</c:if>
+        <c:if test="${empty cartList}">
+            <p class="empty">カートは空です。</p>
+        </c:if>
 
-	<c:if test="${not empty cartItems}">
-		<table border="1" cellpadding="10">
-			<tr>
-				<th>商品名</th>
-				<th>単価</th>
-				<th>数量</th>
-				<th>小計</th>
-				<th>操作</th>
-			</tr>
+        <c:if test="${not empty cartList}">
+            <div class="cart-card">
 
-			<c:forEach var="ci" items="${cartItems}">
-				<tr>
-					<td>${ci.item.name}</td>
+                <table class="cart-table">
+                    <tr>
+                        <th>商品名</th>
+                        <th>単価</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th>操作</th>
+                    </tr>
 
-					<td><fmt:formatNumber value="${ci.item.price}" type="number" />
-					</td>
+                    <c:forEach var="ci" items="${cartList}">
+                        <tr>
+                            <td>${ci.name}</td>
+                            <td><fmt:formatNumber value="${ci.price}" type="number" /></td>
 
-					<td>
-						<form action="CartUpdateServlet" method="post">
-							<input type="hidden" name="cartItemId" value="${ci.cartItem.id}">
-							<input type="number" name="amount" value="${ci.amount}" min="1">
-							<button type="submit">変更</button>
-						</form>
-					</td>
+                            <td>
+                                <form action="CartUpdateServlet" method="post" class="inline-form">
+                                    <input type="hidden" name="cartItemId" value="${ci.id}">
+                                    <input type="number" name="amount" value="${ci.amount}" min="1" class="amount-input">
+                                    <button type="submit" class="btn btn-update">変更</button>
+                                </form>
+                            </td>
 
-					<td>
-						<fmt:formatNumber value="${ci.item.price * ci.amount}" type="number" />
-					</td>
+                            <td><fmt:formatNumber value="${ci.price * ci.amount}" type="number" /></td>
 
-					<td>
-						<form action="CartDeleteServlet" method="post">
-							<input type="hidden" name="cartItemId" value="${ci.id}">
-							<button type="submit">削除</button>
-						</form>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
+                            <td>
+                                <form action="CartDeleteServlet" method="post" class="inline-form">
+                                    <input type="hidden" name="cartItemId" value="${ci.id}">
+                                    <button type="submit" class="btn btn-delete">削除</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
 
-		<br>
+                <div class="cart-actions">
+                    <form action="CartDeleteAllServlet" method="post">
+                        <button type="submit" class="btn btn-danger">カートを空にする</button>
+                    </form>
 
-		<form action="CartDeleteAllServlet" method="post">
-			<button type="submit">カートを空にする</button>
-		</form>
+                    <form action="OrderConfirmServlet" method="get">
+                        <button type="submit" class="btn btn-primary">情報入力に進む</button>
+                    </form>
+                </div>
+            </div>
+        </c:if>
+    </div>
 
-		<br>
+	<!-- 共通レイアウト -->
+    <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
-		<form action="OrderConfirmServlet" method="get">
-			<button type="submit">情報入力に進む</button>
-		</form>
-
-	</c:if>
-
+    <script src="${pageContext.request.contextPath}/js/cartList.js"></script>
 </body>
-</html>

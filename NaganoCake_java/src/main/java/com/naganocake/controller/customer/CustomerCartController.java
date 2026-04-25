@@ -4,14 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.naganocake.dao.CartItemDao;
-import com.naganocake.dao.CartItemDaoImpl;
-import com.naganocake.entity.CartItemEntity;
-import com.naganocake.entity.ItemEntity;
-import com.naganocake.model.CartItem;
-import com.naganocake.dao.ItemDao;
-import com.naganocake.dao.ItemDaoImpl;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +11,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import com.naganocake.dao.CartItemDao;
+import com.naganocake.dao.CartItemDaoImpl;
+import com.naganocake.dao.ItemDao;
+import com.naganocake.dao.ItemDaoImpl;
+import com.naganocake.entity.CartItemEntity;
+import com.naganocake.entity.ItemEntity;
+import com.naganocake.model.CartItem;
 
 /**
  * Servlet implementation class CustomerCartController
@@ -90,7 +90,7 @@ public class CustomerCartController extends HttpServlet {
 		// TODO 拡張for文でCartItemEntityからitemテーブルの情報を取得してItemにセットする
 		for (CartItemEntity entity : cartItemEntity) {
 
-			// CartItemEntityからitemテーブルの情報を取得してcartItemモデルにセットする
+			// CartItemEntityからitemテーブルの情報を取得する
 			ItemDao itemSelect = new ItemDaoImpl();
 			ItemEntity itemSelectResult = itemSelect.selectById(entity.getItemId());
 			
@@ -126,15 +126,6 @@ public class CustomerCartController extends HttpServlet {
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
 		int amount = Integer.parseInt(request.getParameter("amount"));
 		
-		
-		// 上記で取得した情報をカートモデルに詰める
-		CartItem cartItem = new CartItem();
-		
-		cartItem.setMemberId(memberId);
-		cartItem.setItemId(itemId);
-		cartItem.setAmount(amount);
-		
-		
 		// カートDaoの変数に実装クラスのインスタンスを代入
 		CartItemDao cartItemDao = new CartItemDaoImpl();
 		
@@ -144,10 +135,14 @@ public class CustomerCartController extends HttpServlet {
 		// 追加する商品の個数が null の場合、商品を追加する。
 		if(countAmount == null) {
 			// 商品追加処理
-			cartItemDao.insert(cartItem);
+	        cartItemDao.insert(memberId, itemId, amount);
 		} else {
 			// 追加する商品の個数が 1 の場合、商品数を更新する。
-			cartItemDao.update(cartItem);
+			// 画面から取得した個数に、DBから取得した個数を追加する。
+			int newAmount = amount + countAmount;
+			
+			// 個数を更新
+			cartItemDao.update(newAmount, memberId, itemId);
 		}
 		
 		// カート画面にリダイレクト

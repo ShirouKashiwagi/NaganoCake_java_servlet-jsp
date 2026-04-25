@@ -1,41 +1,123 @@
-/* cartList.css */
-
-h2 {
-    margin-bottom: 20px;
+/* 背景画像 */
+.cart-bg {
+    background: url('../images/bg/NaganoCake_image.jpg') no-repeat center center/cover; /* 相対パスで画像を読み込み */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-table {
-    width: 80%;
+/* 中央寄せコンテナ */
+.cart-container {
+    max-width: 900px;
+    margin: 120px auto 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* タイトル */
+.cart-title {
+    margin-bottom: 25px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* 半透明カード */
+.cart-card {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: slide-up 0.6s ease-out;
+}
+
+/* テーブル */
+.cart-table {
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-th, td {
-    padding: 10px;
-    text-align: center;
+.cart-table th {
+    background: #fafafa;
+    padding: 12px;
+    border-bottom: 2px solid #ddd;
 }
 
-th {
-    background-color: #f5f5f5;
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
 }
 
-button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
+/* 数量入力 */
+.amount-input {
+    width: 60px;
+    padding: 5px;
+}
+
+/* ボタン共通 */
+.btn {
+    padding: 8px 16px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
-button:hover {
-    background-color: #45a049;
-}
+/* 個別ボタン */
+.btn-update { background: #4CAF50; }
+.btn-update:hover { background: #45a049; transform: scale(1.05); }
 
-form {
-    display: inline;
-}
+.btn-delete { background: #d9534f; }
+.btn-delete:hover { background: #c9302c; transform: scale(1.05); }
 
-.empty-message {
+.btn-danger { background: #b52b27; }
+.btn-danger:hover { background: #9e1f1b; transform: scale(1.05); }
+
+.btn-primary { background: #0275d8; }
+.btn-primary:hover { background: #025aa5; transform: scale(1.05); }
+
+/* ボタンの横並び */
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
+}
+
+/* フォーム横並び */
+.inline-form {
+    display: inline-block;
+}
+
+/* 空メッセージ */
+.empty {
     font-size: 18px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+/* アニメーション */
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.changed {
+    animation: pulse 0.3s ease-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
 }
