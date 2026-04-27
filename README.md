@@ -107,15 +107,25 @@ Architecture Diagram（テキスト版）
 ============================================================
 
 Presentation Layer
+
 ├── JSP
+
 └── Controller (Servlet)
+
 ↓
+
 Business Logic Layer (Service)
+
 ↓
+
 Data Access Layer
+
 ├── DAO
+
 └── Entity
+
 ↓
+
 Database
 
 ============================================================
