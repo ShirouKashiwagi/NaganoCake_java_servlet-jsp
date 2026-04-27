@@ -135,7 +135,7 @@ public class CustomerCartController extends HttpServlet {
 		// 追加する商品の個数が null の場合、商品を追加する。
 		if(countAmount == null) {
 			// 商品追加処理
-	        cartItemDao.insert(memberId, itemId, amount);
+	        cartItemDao.insert(amount, memberId, itemId);
 		} else {
 			// 追加する商品の個数が 1 の場合、商品数を更新する。
 			// 画面から取得した個数に、DBから取得した個数を追加する。

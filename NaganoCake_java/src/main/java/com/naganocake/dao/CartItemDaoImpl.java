@@ -15,7 +15,7 @@ public class CartItemDaoImpl implements CartItemDao {
 	// カート情報を登録
 	public boolean insert(int newAmount, int memberId, int itemId) {
 		
-		String sql = "INSERT INTO cart_items (member_id, item_id, amount) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO cart_items (amount, member_id, item_id) VALUES (?, ?, ?)";
 
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
