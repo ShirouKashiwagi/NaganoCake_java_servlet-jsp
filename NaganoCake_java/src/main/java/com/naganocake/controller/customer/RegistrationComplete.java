@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Servlet implementation class CustomerRegistrationComplete
  */
 @WebServlet("/CustomerRegistrationComplete")
-public class CustomerRegistrationComplete extends HttpServlet {
+public class RegistrationComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

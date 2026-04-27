@@ -20,9 +20,9 @@ public class CartItemDaoImpl implements CartItemDao {
 		try (Connection con = ConnectionBase.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
-			pstmt.setInt(1, memberId);
-			pstmt.setInt(2, itemId);
-			pstmt.setInt(3, newAmount);
+			pstmt.setInt(1, newAmount);
+			pstmt.setInt(2, memberId);
+			pstmt.setInt(3, itemId);
 
 			// SQL文を表示
 			System.out.println(pstmt.toString());
@@ -53,8 +53,7 @@ public class CartItemDaoImpl implements CartItemDao {
 
 		// CartItem を格納するリスト（ArrayListで実装）
 		List<CartItemEntity> cartList = new ArrayList<>();
-		// カートエンティティの初期化
-		CartItemEntity cartItemEntity = new CartItemEntity();
+
 		// 件数カウンタ
 		int count = 0;
 		
@@ -74,7 +73,10 @@ public class CartItemDaoImpl implements CartItemDao {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-
+				
+				// カートエンティティの初期化
+				CartItemEntity cartItemEntity = new CartItemEntity();
+				
 				// 取得した値をを商品カートモデルにセット
 				cartItemEntity.setId(rs.getInt("id"));
 				cartItemEntity.setMemberId(rs.getInt("member_id"));

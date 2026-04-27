@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Servlet implementation class CustomerLoginForm
  */
 @WebServlet("/CustomerLoginForm")
-public class CustomerLoginForm extends HttpServlet {
+public class LoginForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

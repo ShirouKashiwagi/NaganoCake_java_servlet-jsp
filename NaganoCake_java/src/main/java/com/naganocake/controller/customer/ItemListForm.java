@@ -19,13 +19,13 @@ import jakarta.servlet.http.HttpSession;
  * Servlet implementation class CustomerItemListForm
  */
 @WebServlet("/CustomerItemListForm")
-public class CustomerItemListForm extends HttpServlet {
+public class ItemListForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CustomerItemListForm() {
+    public ItemListForm() {
         super();
         // TODO Auto-generated constructor stub
     }

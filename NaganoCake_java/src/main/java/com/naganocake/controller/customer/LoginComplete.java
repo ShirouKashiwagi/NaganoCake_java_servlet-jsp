@@ -18,7 +18,7 @@ import com.naganocake.util.MemberUtil;
  * Servlet implementation class CustomerLoginComplete
  */
 @WebServlet("/CustomerLoginComplete")
-public class CustomerLoginComplete extends HttpServlet {
+public class LoginComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

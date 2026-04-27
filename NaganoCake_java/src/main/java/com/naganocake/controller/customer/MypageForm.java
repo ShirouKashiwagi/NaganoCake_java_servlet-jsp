@@ -18,7 +18,7 @@ import com.naganocake.model.Member;
  * Servlet implementation class CustomerLoginForm
  */
 @WebServlet("/CustomerMypageForm")
-public class CustomerMypageForm extends HttpServlet {
+public class MypageForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override

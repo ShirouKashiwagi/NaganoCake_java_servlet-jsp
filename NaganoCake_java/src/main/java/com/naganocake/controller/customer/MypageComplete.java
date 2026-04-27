@@ -2,11 +2,6 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,18 +9,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
+
 /**
  * Servlet implementation class CustomerLoginForm
  */
 @WebServlet("/CustomerMypageComplete")
-public class CustomerMypageComplete extends HttpServlet {
+public class MypageComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 更新結果
-		boolean isUpdate;
 		
 		// 会員情報をJSPから取得する
 		Member member = MemberUtil.createMemberFromRequest(request);

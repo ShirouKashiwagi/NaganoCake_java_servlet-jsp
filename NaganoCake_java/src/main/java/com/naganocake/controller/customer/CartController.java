@@ -24,7 +24,7 @@ import com.naganocake.model.CartItem;
  * Servlet implementation class CustomerCartController
  */
 @WebServlet("/CustomerCartController")
-public class CustomerCartController extends HttpServlet {
+public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -96,6 +96,7 @@ public class CustomerCartController extends HttpServlet {
 			
 			// cartItemモデルにセットする
 			CartItem item = new CartItem();
+			item.setItemId(entity.getItemId());
 			item.setAmount(entity.getAmount());
 			item.setCreatedAt(entity.getCreatedAt());
 			item.setName(itemSelectResult.getName());
