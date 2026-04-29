@@ -11,7 +11,7 @@
 	<div class="container">
 		<h2>マイページ</h2>
 		<h3>会員情報</h3>
-		<form action="${pageContext.request.contextPath}/CustomerMypageComplete" method="post">
+		<form action="${pageContext.request.contextPath}/customer/mypage" method="post">
 			<div class="item">
 				<label>ID：</label> <span class="readonly">${member.id}</span>
 			</div>

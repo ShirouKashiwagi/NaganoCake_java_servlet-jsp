@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
 
 			// 商品一覧画面へリダイレクト
 			System.out.println("商品一覧画面へリダイレクト");
-			response.sendRedirect(request.getContextPath() + "/CustomerItemListForm"); 
+			response.sendRedirect(request.getContextPath() + "/customer/item/list"); 
 			
 		} else {
 			System.out.println("ログイン失敗: メールまたはパスワードが不正");

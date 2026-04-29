@@ -23,7 +23,7 @@ import com.naganocake.model.CartItem;
 /**
  * Servlet implementation class CustomerCartController
  */
-@WebServlet("/CustomerCartController")
+@WebServlet("/customer/cart")
 public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,7 +44,6 @@ public class CartController extends HttpServlet {
 
 		response.sendError(HttpServletResponse.SC_NOT_FOUND);
 	}
-
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -147,7 +146,7 @@ public class CartController extends HttpServlet {
 		}
 		
 		// カート画面にリダイレクト
-		response.sendRedirect(request.getContextPath() + "/CustomerCartController?action=list");
+		response.sendRedirect(request.getContextPath() + "/customer/cart?action=list");
 	}
 
 	

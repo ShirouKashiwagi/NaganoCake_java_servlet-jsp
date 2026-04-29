@@ -45,7 +45,7 @@
 								</li>
 								
 								<li class="nav-item">
-									<a class="nav-link" href="${pageContext.request.contextPath}/CustomerCartController?action=list">
+									<a class="nav-link" href="${pageContext.request.contextPath}/customer/cart?action=list">
 									  カート[${cartItem.amount}]
 									</a>
 								</li>
@@ -66,7 +66,7 @@
 
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}/LogoutController">ログイン</a>
+									href="${pageContext.request.contextPath}/customer/login">ログイン</a>
 								</li>
 							</c:otherwise>
 						</c:choose>

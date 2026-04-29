@@ -75,6 +75,6 @@ public class MypageController extends HttpServlet {
 		//if()
 		
 		// マイページ画面にリダイレクト
-		response.sendRedirect(request.getContextPath() + "/CustomerMypageForm");
+		response.sendRedirect(request.getContextPath() + "/customer/mypage");
 	}
 }

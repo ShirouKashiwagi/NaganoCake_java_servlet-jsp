@@ -45,7 +45,7 @@
 				</c:choose>
 			</p>
 
-			<form action="${pageContext.request.contextPath}/CustomerCartController?" method="post" class="cart-form">
+			<form action="${pageContext.request.contextPath}/customer/cart" method="post" class="cart-form">
 				<input type="hidden" name="itemId" value="${item.id}">
 				<input type="hidden" name="action" value="add">
 				<label for="amount">数量：</label>
