@@ -3,11 +3,6 @@ package com.naganocake.controller.customer;
 import java.io.IOException;
 import java.util.List;
 
-import com.naganocake.dao.ItemDao;
-import com.naganocake.dao.ItemDaoImpl;
-import com.naganocake.model.Item;
-import com.naganocake.model.Member;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,20 +10,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import com.naganocake.dao.ItemDao;
+import com.naganocake.dao.ItemDaoImpl;
+import com.naganocake.model.Item;
+import com.naganocake.model.Member;
+
 /**
  * Servlet implementation class CustomerItemListForm
  */
-@WebServlet("/CustomerItemListForm")
-public class ItemListForm extends HttpServlet {
+@WebServlet("/customer/item/list")
+public class ItemListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ItemListForm() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -65,12 +57,5 @@ public class ItemListForm extends HttpServlet {
 		
 		// 商品一覧画面を表示
 		request.getRequestDispatcher("/WEB-INF/views/customer/itemList.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 }

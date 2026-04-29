@@ -50,7 +50,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="${pageContext.request.contextPath}/CustomerItemListForm">商品一覧</a
+									<a class="nav-link" href="${pageContext.request.contextPath}/customer/item/list">商品一覧</a
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="/customer_orders">注文履歴</a

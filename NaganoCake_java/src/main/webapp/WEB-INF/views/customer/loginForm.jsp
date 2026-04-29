@@ -12,7 +12,7 @@
 <body>
 
 	<div class="wrapper">
-		<form action="${pageContext.request.contextPath}/CustomerLoginComplete" method="post">
+		<form action="${pageContext.request.contextPath}/customer/login" method="post">
 		
 			<h1>Login</h1>
 			<div class="input-box">
