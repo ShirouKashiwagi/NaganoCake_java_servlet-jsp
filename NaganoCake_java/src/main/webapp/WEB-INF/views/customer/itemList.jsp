@@ -63,7 +63,7 @@
 							<div style="margin-top: 10px;">
 								<!-- カート追加は後回し、今は詳細ページリンクのみ -->
 								<a
-									href="${pageContext.request.contextPath}/CustomerItemDetailForm?id=${item.id}"
+									href="${pageContext.request.contextPath}//customer/item/detail?id=${item.id}"
 									style="background: #4CAF50; color: white; padding: 8px 12px; text-decoration: none; border-radius: 3px;">
 									詳細を見る </a>
 							</div>

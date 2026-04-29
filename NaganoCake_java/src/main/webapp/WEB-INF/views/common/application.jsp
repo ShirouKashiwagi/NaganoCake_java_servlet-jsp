@@ -56,7 +56,7 @@
 									<a class="nav-link" href="/customer_orders">注文履歴</a
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="${pageContext.request.contextPath}/CustomerMypageForm">マイページ</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/customer/mypage">マイページ</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="${pageContext.request.contextPath}/logout">ログアウト</a>

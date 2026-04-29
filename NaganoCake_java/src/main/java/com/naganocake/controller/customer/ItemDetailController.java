@@ -2,10 +2,6 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
-import com.naganocake.dao.ItemDao;
-import com.naganocake.dao.ItemDaoImpl;
-import com.naganocake.entity.ItemEntity;
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,11 +9,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import com.naganocake.dao.ItemDao;
+import com.naganocake.dao.ItemDaoImpl;
+import com.naganocake.entity.ItemEntity;
+
 /**
  * Servlet implementation class CustomerItemDetailForm
  */
-@WebServlet("/CustomerItemDetailForm")
-public class ItemDetailForm extends HttpServlet {
+@WebServlet("/customer/item/detail")
+public class ItemDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

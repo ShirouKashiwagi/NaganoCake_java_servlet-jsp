@@ -2,24 +2,33 @@ package com.naganocake.controller.customer;
 
 import java.io.IOException;
 
-import com.naganocake.dao.MemberDao;
-import com.naganocake.dao.MemberDaoImpl;
-import com.naganocake.model.Member;
-import com.naganocake.util.MemberUtil;
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import com.naganocake.dao.MemberDao;
+import com.naganocake.dao.MemberDaoImpl;
+import com.naganocake.model.Member;
+import com.naganocake.util.MemberUtil;
+
 /**
  * Servlet implementation class CustomerRegistrationComplete
  */
-@WebServlet("/CustomerRegistrationComplete")
-public class RegistrationComplete extends HttpServlet {
+@WebServlet("/customer/registration")
+public class RegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/registrationForm.jsp");
+		dispatcher.forward(request, response);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 会員Emptyの取得
