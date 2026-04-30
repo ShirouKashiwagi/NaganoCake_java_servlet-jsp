@@ -44,7 +44,7 @@ public class ItemListController extends HttpServlet {
 		}
 		
 		// 商品一覧の初期化
-//		Item item = new Item(); Daoの処理中に初期化を行っているため不要。
+		// Item item = new Item(); Daoの処理中に初期化を行っているため不要。
 		
 		// ItemDaoImplの初期化
 		ItemDao selectItem = new ItemDaoImpl();

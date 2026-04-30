@@ -37,8 +37,8 @@ public class CartController extends HttpServlet {
 		// JSPからGet送信されたactionを取得
 		String action = request.getParameter("action");
 
-		if (action == null || action.equals("list")) {
-			listItem(request, response);
+		if (action == null || action.equals("index")) {
+			indexItem(request, response);
 			return;
 		}
 
@@ -68,7 +68,7 @@ public class CartController extends HttpServlet {
 
 	
 	// list：カート画面表示
-	private void listItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void indexItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
@@ -146,7 +146,7 @@ public class CartController extends HttpServlet {
 		}
 		
 		// カート画面にリダイレクト
-		response.sendRedirect(request.getContextPath() + "/customer/cart?action=list");
+		response.sendRedirect(request.getContextPath() + "/customer/cart?action=index");
 	}
 
 	

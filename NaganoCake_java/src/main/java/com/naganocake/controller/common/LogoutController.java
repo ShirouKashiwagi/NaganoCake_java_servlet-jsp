@@ -12,18 +12,20 @@ import jakarta.servlet.http.HttpSession;
 /**
  * Servlet implementation class LogoutController
  */
-@WebServlet("/LogoutController")
+@WebServlet("/logout")
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// セッションを空にする
 		HttpSession session = request.getSession(false);
 		session.invalidate();
 		
 		// カート画面にリダイレクト
-		response.sendRedirect(request.getContextPath() + "/CustomerCartController?action=list");
+		response.sendRedirect(request.getContextPath() + "/customer/login");
 	}
 }
