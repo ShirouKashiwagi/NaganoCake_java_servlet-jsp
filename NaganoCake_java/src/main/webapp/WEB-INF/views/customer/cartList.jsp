@@ -59,7 +59,7 @@
                         <button type="submit" class="btn btn-danger">カートを空にする</button>
                     </form>
 
-                    <form action="OrderConfirmServlet" method="get">
+                    <form action="${pageContext.request.contextPath}/customer/order" method="get" class="cart-form">
                         <button type="submit" class="btn btn-primary">情報入力に進む</button>
                     </form>
                 </div>

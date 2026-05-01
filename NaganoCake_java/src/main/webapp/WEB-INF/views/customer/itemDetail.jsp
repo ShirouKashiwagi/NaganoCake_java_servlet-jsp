@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/itemDetail.css">
 </head>
 <body>
-	
+	<!--共通ヘッダ-->
 	<%@ include file="/WEB-INF/views/common/application.jsp" %>
 	
 	<div class="item-detail-container">
