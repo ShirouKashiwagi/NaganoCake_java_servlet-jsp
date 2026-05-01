@@ -32,8 +32,8 @@
         <!-- カート一覧 -->
         <c:forEach var="ci" items="${cartList}">
             <tr>
-                <td>${ci.item.name}</td>
-                <td>${ci.item.price}円</td>
+                <td>${ci.name}</td>
+                <td>${ci.price}円</td>
                 <td>${ci.quantity}</td>
                 <td>${ci.item.price * ci.quantity}円</td>
             </tr>
@@ -87,7 +87,10 @@
     </form>
 
 </div>
-
+	
+	<%-- 共通レイアウト --%>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	
 <script src="../js/order_confirm.js"></script>
 
 </body>

@@ -14,6 +14,7 @@ import com.naganocake.dao.MemberDao;
 import com.naganocake.dao.MemberDaoImpl;
 import com.naganocake.model.Member;
 import com.naganocake.util.MemberUtil;
+import com.naganocake.util.SystemConstants;
 
 /**
  * Servlet implementation class CustomerLoginForm
@@ -29,19 +30,23 @@ public class MypageController extends HttpServlet {
 		// セッションオブジェクトの生成or取得
 		HttpSession session = request.getSession(false);
 
-		int loginId = (int) session.getAttribute("memberId");
+		int memberId = (int) session.getAttribute(SystemConstants.SESSION_MEMBER_ID);
 
 		// // MemberDaoImplの呼び出し
 		MemberDao memberDao = new MemberDaoImpl();
 
 		// IDをもとに会員情報を取得
-		Member member = memberDao.selectById(loginId);
+		Member member = memberDao.selectById(memberId);
 
-		// 取得した会員情報をリクエストスコープに保存
+		// 取得した会員情報をリクエストスコープに詰める
 		request.setAttribute("member", member);
+		
+		// ユーザ名はセッションスコープに詰める
+		session.setAttribute("memberFirstName", member.getFirstName());
+		session.setAttribute("memberLastName", member.getLastName());
 
 		// セッションからログインIDが取得できた場合
-		if (loginId != 0) {
+		if (memberId != 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/myPage.jsp");
 			dispatcher.forward(request, response);
 		} else {
@@ -60,7 +65,7 @@ public class MypageController extends HttpServlet {
 	    HttpSession session = request.getSession(false);
 	    
 	    // セッションから会員情報を取得
-	    int sessionId = (int)session.getAttribute("memberId");
+	    int sessionId = (int)session.getAttribute(SystemConstants.SESSION_MEMBER_ID);
 		
 	    // member変数にセッションで取得した会員IDをセット
 	    member.setId(sessionId);

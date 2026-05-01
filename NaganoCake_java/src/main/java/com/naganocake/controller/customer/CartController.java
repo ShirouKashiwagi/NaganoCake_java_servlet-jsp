@@ -19,6 +19,7 @@ import com.naganocake.dao.ItemDaoImpl;
 import com.naganocake.entity.CartItemEntity;
 import com.naganocake.entity.ItemEntity;
 import com.naganocake.model.CartItem;
+import com.naganocake.util.SystemConstants;
 
 /**
  * Servlet implementation class CustomerCartController
@@ -103,8 +104,8 @@ public class CartController extends HttpServlet {
 			cartList.add(item);
 		}
 		
-		// DBから取得したカート情報をリクエストに詰める
-		request.setAttribute("cartList", cartList);
+		// DBから取得したカート情報をセッションに詰める
+		session.setAttribute("cartList", cartList);
 
 		// リクエスト情報をカート画面に送信及び画面遷移
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/customer/cartList.jsp");
@@ -120,7 +121,7 @@ public class CartController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 
 		// セッションから会員IDを取得
-		int memberId = (int) session.getAttribute("memberId");
+		int memberId = (int) session.getAttribute(SystemConstants.SESSION_MEMBER_ID);
 		
 		// 商品詳細画面からPOST送信された情報を取得
 		int itemId = Integer.parseInt(request.getParameter("itemId"));

@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/myPage.css">
 </head>
 <body>
+
+	<%-- 共通レイアウト --%>
+	<%@ include file="/WEB-INF/views/common/application.jsp"%>
+	
 	<div class="container">
 		<h2>マイページ</h2>
 		<h3>会員情報</h3>
@@ -78,5 +82,9 @@
 				</div>
 			</form>
 	</div>
+		
+	<%-- 共通レイアウト --%>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	
 </body>
 </html>

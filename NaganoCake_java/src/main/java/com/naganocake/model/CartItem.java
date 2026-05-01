@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 public class CartItem {
   private int id;
-	private int memberId;
-	private int itemId;
-	private String name;
-	private int price;
+  private int memberId;
+  private int itemId;
+  private String name;
+  private int price;
   private int amount;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;

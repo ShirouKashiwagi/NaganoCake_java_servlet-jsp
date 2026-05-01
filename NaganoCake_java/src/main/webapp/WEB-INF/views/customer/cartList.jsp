@@ -29,7 +29,7 @@
                         <th>操作</th>
                     </tr>
 
-                    <c:forEach var="ci" items="${cartList}">
+                    <c:forEach var="ci" items="${sessionScope.cartList}">
                         <tr>
                             <td>${ci.name}</td>
                             <td><fmt:formatNumber value="${ci.price}" type="number" /></td>
