@@ -13,7 +13,7 @@
 
 	<!--共通ヘッダ-->
 	<%@ include file="/WEB-INF/views/common/application.jsp" %>
-	
+
 <div class="wrapper">
 
     <h1>注文内容の確認</h1>
@@ -34,15 +34,15 @@
             <tr>
                 <td>${ci.name}</td>
                 <td>${ci.price}円</td>
-                <td>${ci.quantity}</td>
-                <td>${ci.item.price * ci.quantity}円</td>
+                <td>${ci.amount}</td>
+                <td>${ci.price * ci.amount}円</td>
             </tr>
         </c:forEach>
 
         <!-- 合計 -->
         <tr>
             <th colspan="3">商品合計</th>
-            <td>${totalAmount}円</td>
+            <td>${totalAmount}円</td>wA	
         </tr>
         <tr>
             <th colspan="3">送料</th>
