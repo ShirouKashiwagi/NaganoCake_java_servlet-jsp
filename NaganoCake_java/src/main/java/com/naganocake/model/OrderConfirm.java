@@ -7,7 +7,7 @@ public class OrderConfirm {
 	private int price;
 	private int amount;
 	private int shippingFee;
-	private int total_amount;
+	private int totalPrice;
 	
 	
 	public int getItemId() {
@@ -51,10 +51,10 @@ public class OrderConfirm {
 	}
 
 	public int getTotal_amount() {
-		return total_amount;
+		return totalPrice;
 	}
 
-	public void setTotal_amount(int total_amount) {
-		this.total_amount = total_amount;
+	public void setTotal_amount(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

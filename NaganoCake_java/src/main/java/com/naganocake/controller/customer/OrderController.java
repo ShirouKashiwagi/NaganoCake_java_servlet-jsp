@@ -32,7 +32,6 @@ public class OrderController extends HttpServlet {
 		
 		// セッションから会員ID、カート情報を取得
 		HttpSession session = request.getSession(false);
-		
 		int memberId = (int) session.getAttribute(SystemConstants.SESSION_MEMBER_ID);
 		
 		List<CartItem> cartList = (List<CartItem>) session.getAttribute(SystemConstants.SESSION_CART);
@@ -69,5 +68,4 @@ public class OrderController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

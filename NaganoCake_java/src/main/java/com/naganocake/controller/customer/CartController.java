@@ -81,13 +81,11 @@ public class CartController extends HttpServlet {
 		int memberId = (int) session.getAttribute("memberId");
 		
 		
-		// TODO CartItemDaoのユーザIDに紐づいたカート情報を全件取得
 		// セッションから取得した会員IDでカート情報を取得
 		CartItemDao cartItemDao = new CartItemDaoImpl();
 		cartItemEntity = cartItemDao.selectByMemberId(memberId);
 		
 		
-		// TODO 拡張for文でCartItemEntityからitemテーブルの情報を取得してItemにセットする
 		for (CartItemEntity entity : cartItemEntity) {
 
 			// CartItemEntityからitemテーブルの情報を取得する

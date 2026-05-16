@@ -8,18 +8,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding-top: 80px;
+.order-confirm-page {
+/*	display: flex;*/
+	justify-content: center;
+	align-items: flex-start;
+/*	min-height: 100vh;*/
 
-    background-image: url('../images/bg/NaganoCake_image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+	background-image: url('../images/bg/NaganoCake_image.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 /* =================================================================
@@ -27,6 +26,8 @@ body {
  * ================================================================= */
 .wrapper {
     width: 650px;
+	margin: 0 auto;
+	margin-top: 30px;
     color: #333;
     border-radius: 12px;
     padding: 40px 50px;
