@@ -24,11 +24,36 @@ import com.naganocake.util.SystemConstants;
 public class OrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	protected void doget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// JSPからGet送信されたactionを取得
+		String action = request.getParameter("action");
+		
+		// 変数actionがnullまたは index の場合
+		if (action == null || action.equals("index")) {
+			indexOrder(request, response);
+			return;
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// JSPからGet送信されたactionを取得
+		String action = request.getParameter("action");
+		
+		switch(action) {
+		// 変数actionが sadd の場合
+		case "add":
+			addOrder(request, response);
+		// 上記以外の場合
+		default:
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			break;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void indexOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// セッションから会員ID、カート情報を取得
 		HttpSession session = request.getSession(false);
@@ -44,7 +69,7 @@ public class OrderController extends HttpServlet {
 		// IDをもとに会員情報を取得
 		Member member = memberDao.selectById(memberId);
 
-		// セッションから取得した会員情報、定数から送料をリクエストスコープに詰める
+		// セッションから取得した会員情報と送料をリクエストスコープに詰める
 		request.setAttribute("member", member);
 		request.setAttribute("shippingFee", SystemConstants.SHIPPING_FEE);
 		
@@ -60,12 +85,15 @@ public class OrderController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "CustomerLoginForm");
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+	@SuppressWarnings("unchecked")
+	protected void addOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// セッションから会員ID、カート情報を取得
+		HttpSession session = request.getSession(false);
+		List<CartItem> cartList = (List<CartItem>) session.getAttribute(SystemConstants.SESSION_CART);
+		
+		
 	}
+
 }

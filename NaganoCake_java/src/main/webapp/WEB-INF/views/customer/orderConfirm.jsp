@@ -57,7 +57,8 @@
 	    <!-- 支払い方法 -->
 	    <div class="section-title">支払い方法</div>
 	
-	    <form action="/customer/order/create" method="post">
+	    <form action="${pageContext.request.contextPath}/customer/order" method="post">
+	    	<input type="hidden" name="action" value="add">
 	
 	        <div class="radio-group">
 	            <label><input type="radio" name="payment_method" value="クレジットカード" checked> クレジットカード</label>
@@ -78,6 +79,7 @@
 	        <!-- hidden -->
 	        <input type="hidden" name="shipping_fee" value="${shippingFee}">
 	        <input type="hidden" name="total_amount" value="${totalAmount + shippingFee}">
+	        <input type="hidden" name="action" value="add">
 	
 	        <button type="submit" class="btn" id="orderBtn">注文を確定する</button>
 	    </form>

@@ -39,7 +39,7 @@ public class CartController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if (action == null || action.equals("index")) {
-			indexItem(request, response);
+			indexCart(request, response);
 			return;
 		}
 
@@ -50,7 +50,7 @@ public class CartController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// JSPからGet送信されたactionを取得
+		// JSPからPost送信されたactionを取得
 		String action = request.getParameter("action");
 
 		// 各機能への振分処理
@@ -69,7 +69,7 @@ public class CartController extends HttpServlet {
 
 	
 	// list：カート画面表示
-	private void indexItem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void indexCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// ListインターフェースにArrayListを代入
 		List<CartItem> cartList = new ArrayList<>();
