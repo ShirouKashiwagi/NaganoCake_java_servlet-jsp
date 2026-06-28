@@ -94,10 +94,16 @@ public class CartController extends HttpServlet {
 			
 			// cartItemモデルにセットする
 			CartItem item = new CartItem();
+			
+			// 商品ID
 			item.setItemId(entity.getItemId());
+			// 個数
 			item.setAmount(entity.getAmount());
+			// 追加日付
 			item.setCreatedAt(entity.getCreatedAt());
+			// 商品名
 			item.setName(itemSelectResult.getName());
+			// 金額
 			item.setPrice(itemSelectResult.getPrice());
 			cartList.add(item);
 		}
